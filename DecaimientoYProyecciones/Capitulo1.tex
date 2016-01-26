@@ -1,0 +1,476 @@
+\documentclass[a4paper,openright,12pt]{book}
+\usepackage[spanish]{babel} % espaÃ±ol
+\usepackage[latin1]{inputenc} % acentos sin codigo
+\usepackage{graphicx} % graficos
+\usepackage{subfigure}
+\usepackage{amsmath}%
+\usepackage{amsfonts}%
+\usepackage{amssymb}%
+\usepackage{braket}
+
+%-------------------------------------------
+
+
+\begin{document}
+
+
+\pagenumbering{arabic} % para empezar la numeración con números
+
+\chapter*{La base de decaimiento y sus proyecciones en el espacio de Liouville}
+
+
+\section*{Introducción}
+
+En muchas ramas de la física, y sobre todo en mecánica cuántica, la evolución temporal es determinada por ecuaciones lineales. Esto está manifestado en la ecuación de Schödinger,
+
+\begin{equation}
+\label{uno}
+\hat{H}(t) \ket{\psi (t)}= i\hbar\frac{\partial}{\partial t} \ket{\psi (t)}
+\end{equation}
+
+
+de la cual se calcula la evolución temoral del vector de estado $\ket{\psi (t)}$ y donde $\hat{H}(t)$ es el Hamiltoniano del sistema. La solución de tal ecuación puede ser representada en términos del operador de evolución temporal $\hat{U}(t, t_0)$, el cual transforma el estado $\ket{\psi (t_0)}$, para un valor inicial $t=t_0$, a un estado $\ket{\psi (t)}$,
+
+\begin{equation}
+\label{dos}
+\ket{\psi (t)} = \hat{U}(t, t_0)\ket{\psi (t_0)}
+\end{equation}
+
+Evidentemente de (\ref{uno}) se puede ver que el operador de evolución temporal sigue la ecuación
+
+\begin{equation}
+\label{tres}
+\hat{H}(t) \hat{U}(t, t_0) = i\hbar\frac{\partial}{\partial t} \hat{U}(t, t_0)
+\end{equation}
+
+con condición inicial $\hat{U}(t_0, t_0) = I$. Para sistemas cerrados y aislados, el Hamiltoniano es independiente del tiempo y la solución a la ecuación (\ref{dos}) es 
+
+\begin{equation}
+\label{cuatro}
+\hat{U}(t, t_0) = \exp{[\frac{-i}{\hbar}\hat{H}(t-t_0)]}
+\end{equation}
+
+Pero, para sistemas donde el Hamiltoniano es dependiente del tiempo, es decir, un sistema físico con perdidas y/o fuerzas externas, el operador de evolución se convierte en
+
+\begin{equation}
+\label{cinco}
+\hat{U}(t, t_0) = \exp{[\frac{-i}{\hbar}{\int}^{t}_{t_0}\hat{H}(t') dt']}
+\end{equation}
+
+Como puede observarse, comparando (\ref{dos}) y (\ref{cuatro}), la evolución del sistema físico recae en el actuar del Hamiltoniano sobre el vector de estado inicial. La manera más rápida de proceder es encontrar los eigenvalores $E_{n}$ y eigenvectores $\ket{\psi_n}$ del operador Hamiltoniano, los cuales siguen la ecuación
+
+\begin{equation}
+\hat{H}\ket{\psi_n} = E_{n}\ket{\psi_n}
+\end{equation}
+
+con la finalidad de con ellos formar una combinación lineal qeu recree el $\ket{\psi(0)}$, con ello obtener la operación de $\hat{H}$ sobre él, y por lo tanto la de $\hat{U}(t,t_0)$. Si se utiliza el esquema de interacción dividiendo $\bar{H}$ en una parte indepentiente y otra dependiente del tiempo, la parte $V(t)$ podría ignorarse en el procedimiento puesto que estaría dentro del vector de estado. No obstante, una descripción más general de la mecánica cuántica puede ser hecha a través del operador densidad $\rho(t)$
+
+\section*{Descomposición espectral de la ecuación maestra: La base de decaimiento}
+Los sistemas en los que enfocaremos nuestro estudio, son aquellos sistemas acoplados a un ambiente Markoviano en los que, utilizando el esquema de interacción, podemos escribir la ecuación maestra de la forma
+
+\begin{equation}
+\label{seis}
+\frac{\partial \hat{\rho}}{\partial t} = \mathcal{L} \hat{\rho}
+\end{equation}
+
+donde $\mathcal{L}$ es un operador de Liouville o superoperador llamado operador de Lindblad, es decir, actua sobre operadores en lugar de actuar sobre vectores de estado; y $\hat{\rho}$ es el operador densidad reducido, es decir, aquel que contiene la dinámica del sistema. Dos ejemplos de este tipo de sistemas es el átomo de dos niveles (amortiguado radiativamente) y el oscilador armónico amortiguado, con
+
+\begin{eqnarray}
+\label{siete}
+\mathcal{L}\hat{\rho} = &-&\frac{A}{2}(\bar{n}+1)(\hat{a}^{\dag}\hat{a}\hat{\rho} + \hat{\rho}\hat{a}^{\dag}\hat{a} - 2\hat{a}\hat{\rho}\hat{a}^{\dag})
+										 \\ &-&\frac{A}{2}(\bar{n})(\hat{a}\hat{a}^{\dag}\hat{\rho} + \hat{\rho}\hat{a}\hat{a}^{\dag} - 2\hat{a}^{\dag}\hat{\rho}\hat{a}) \nonumber
+\end{eqnarray}
+
+donde los operadores $\hat{a}^{\dag}$, $\hat{a}$ y las constantes $A$, $\bar{n}$ son distintos en cada caso; para el átomo de dos niveles, los operadores son $\hat{\sigma}_{+}, \hat{\sigma}_{-}$ relacionados con las matrices de Pauli y para el oscilador, los operadores son $\hat{a}^{\dag}, \hat{a}$ relacionados con la creación o aniquilación de un cuanto de energía. Una anotación importante son los nombres que reciben las dos partes del superoperador de la ecuación (\ref{siete}), la primera es llamada atenuador y la segunda amplificador, indagaremos más en estos nombres cuando resolvamos ejemplos.
+
+Se ve claramente que la solución de (\ref{siete}) es 
+
+\begin{equation}
+\hat{\rho}(t) = \exp{(\mathcal{L}t)}\hat{\rho}(0)
+\end{equation}
+
+Sin embargo no conocemos como transforma el operador exponencial a la condición inicial. Procedamos a darle solución a la ecuación (7) en analogía a darle solución a la ecuación de Schrödinger (1). Para obtener toda la información dinámica del sistema, debemos resolver
+
+\begin{equation}
+\mathcal{L}\hat{\rho}_{\Gamma} = \Gamma \hat{\rho}_{\Gamma}
+\end{equation}
+
+lo cual es un problema de eigenvalores, donde $\Gamma$ son los eigenvalores del operador de Lindblad. De tal manera que la condición inicial del estado del sistema puede ser desarrollada como 
+
+\begin{equation}
+\hat{\rho}(0) = \sum_{\Gamma} \check{c}_{\Gamma} \hat{\rho}_{\Gamma}
+\end{equation}
+
+y por consiguiente, la evolución del operador densidad
+
+\begin{equation}
+\hat{\rho}(t) = \sum_{\Gamma} \check{c}_{\Gamma} e^{\Gamma t} \hat{\rho}_{\Gamma}
+\end{equation}
+
+Aparentemente el problema está resuelto, sin embargo, es evidente que algo hace falta en este método, hace falta conocer los coeficientes $\check{c}_{\Gamma}$ de la expansión, y en torno a ellos, se desarrollará la complejidad de la metodología expuesta. Puesto que el valor de expectación de un operador es $\braket{O}= Tr[\hat{\rho}\hat{O}]$, podemos definir
+el producto interno de dos operadores
+
+\begin{equation}
+(\hat{A}, \hat{B}) = Tr[\hat{A}^{\dag}\hat{B}]
+\end{equation}
+
+pertenecientes a un espacio $\Lambda$, donde $\hat{A}_{\dag}$ está definido a partir de $(\hat{A}, \hat{A}) = Tr[\hat{A}^{\dag}\hat{A}]$. Pa que sea un espacio con características físicas, los productos interenos no deben diverger; y a partir de la definición del valor de expectación se ve que debe de exitir un espacio dual $\tilde{\Lambda}$ a donde pertenecen  todos los observables físicos. Una cantidad que nos será de ayuda es
+
+\begin{equation}
+(\hat{A}, \mathcal{L} \hat{B}) = Tr[\check{\mathcal{L}} \hat{A}^{\dag}\hat{B}]
+\end{equation}
+
+donde $\check{\mathcal{L}}$ es el superoperador adjunto de $\mathcal{L}$; de tal manera que la evolución de los valores de expectación de un operador cualquiera, vienen dados por
+
+\begin{eqnarray}
+\frac{d}{dt}\left\langle \hat{O}\right\rangle_{t} &=& Tr[\hat{O}\mathcal{L}\hat{\rho}_{t}] = \left\langle \hat{O}\mathcal{L}\right\rangle \\
+																									&=& Tr[\check{\mathcal{L}}\hat{O}\hat{\rho}_{t}] =  \left\langle \check{\mathcal{L}}\hat{O}\right\rangle
+\end{eqnarray}
+
+debido a que está definido como la acción por la izquierda sobre un operador. Sabiendo esto, podemos definir los coeficientes $\check{c}_{\Gamma}$ de la expansión, como las proyecciones de cada uno de los eigenestados con la condición inicial
+
+\begin{equation}
+\check{c}_{\Gamma} = Tr[\check{\rho}_{\Gamma}\hat{\rho}(0)]
+\end{equation}
+
+con los eigenestados $\check{\rho}_{\Gamma}$, llamados eigenestados duales o eigenestados de la izquierda, siguiendo su propia ecuación de eigenvalores
+
+\begin{equation}
+\check{\rho}_{\Gamma}\mathcal{L} = \check{\mathcal{L}} \check{\rho}_{\Gamma} = \Gamma \check{\rho}_{\Gamma}
+\end{equation}
+
+con
+
+\begin{equation}
+Tr[\check{\rho}_{\Gamma}, \hat{\rho}_{\Gamma'}]=\delta_{\Gamma \Gamma'}
+\end{equation}
+
+Note que las dos bases tienen los mismos eigenvalores. Lo cual puede ser deducido de las ecuaciones (16) y (17). Cabe señalar que
+los eigenestados de la derecha nos sirven para expander estados arbitrario
+
+\begin{equation}
+\hat{\rho} = \sum_{\Gamma} \hat{\rho}_{\Gamma} Tr[\check{\rho}_{\Gamma} \hat{\rho}]
+\end{equation}
+
+Lo cual es similar a la relación de completez qque usabamos en para expander un ket arbitrario en una base. Por otro lado, los eigenestados de la izquierda nos sirven para expander observables de la forma
+
+\begin{equation}
+\hat{O} = \sum_{\Gamma} \rho_{\Gamma} Tr[\hat{O} \check{\rho}_{\Gamma}]
+\end{equation}
+
+
+\subsection*{Ejemplos}
+
+\subsubsection*{El átomo de dos niveles amortiguado radiativamente}
+
+Como ya se había mencionado, el átomo de dos niveles con decaimiento cumple la ecuación
+
+\begin{eqnarray*}
+\mathcal{L}\rho = &-&i \frac{\omega}{2} \left[\sigma_{z}, \rho\right]\\
+																					& +	&\frac{\gamma}{2} (\bar{n} + 1)(2\sigma_{-}\rho\sigma_{+} - \sigma_{+}\sigma_{-}\rho - \rho\sigma_{+}\sigma_{-})\\
+																						& + &\frac{\gamma}{2}\bar{n}(2\sigma_{+}\rho\sigma_{-} - \sigma_{-}\sigma_{+}\rho - \rho\sigma_{-}\sigma_{+})
+\end{eqnarray*}
+
+en el esquema de Schödinger. Y por lo tanto, los eigenelementos están dandos por $\mathcal{L}\rho_{\lambda} = \lambda \rho_{\lambda}$. Proponiendo los eigenelementos de la forma más general posible
+
+\begin{equation}
+\rho_{\lambda} = a \ket{+}\bra{+} +b \ket{+}\bra{-} + c \ket{-}\bra{+} +d \ket{-}\bra{-} 
+\end{equation}
+\\
+Sabiendo las operaciones básicas
+
+\begin{align*}
+\sigma_{z} \left|+\right\rangle &= \left|+\right\rangle				& \sigma_{z} \left|-\right\rangle &= 	- \left|-\right\rangle \\
+\sigma_{+} \left|+\right\rangle &= 0 													& \sigma_{+} \left|-\right\rangle &= \left|+\right\rangle \\
+\sigma_{-} \left|+\right\rangle &= \left|-\right\rangle				& \sigma_{-} \left|-\right\rangle &= 0
+\end{align*}
+
+Encontramos que para el atenuador,
+
+\begin{equation}
+\frac{\gamma}{2}(\bar{n}+1)[-2a\left|+\right\rangle\left\langle +\right| -b\left|+\right\rangle\left\langle -\right| -c\left|-\right\rangle\left\langle+\right| +2a\left|-\right\rangle\left\langle -\right| ]
+\end{equation}
+
+para el amplificador,
+
+\begin{equation}
+\frac{\gamma}{2}\bar{n}[2d\left|+\right\rangle\left\langle +\right| -b\left|+\right\rangle\left\langle -\right| -c\left|-\right\rangle\left\langle+\right| -2d\left|-\right\rangle\left\langle -\right| ]
+\end{equation}
+
+y para el conmutador
+
+
+\begin{equation}
+-i\omega[b\left|+\right\rangle\left\langle -\right|-c\left|-\right\rangle\left\langle+\right|]
+\end{equation}
+
+Relacionando el lado izquierdo y el lado derecho de la ecuación de eigenvalores tenemos las siguientes ecuaciones
+
+\begin{equation}
+-\gamma(\bar{n}+1) a + \gamma \bar{n} d = \lambda a
+\end{equation}
+
+\begin{equation}
+\gamma(\bar{n}+1) a - \gamma \bar{n} d = \lambda d
+\end{equation}
+
+\begin{equation}
+[-\frac{\gamma}{2}(2\bar{n}+1)-i\omega = \lambda]b
+\end{equation}
+
+\begin{equation}
+[-\frac{\gamma}{2}(2\bar{n}+1)+i\omega = \lambda]c
+\end{equation}
+
+De las cuales debemos obtener los eigenvalores y a partir de estos, los eigenelementos. Evidentemente, de (28) y (29) tenemos los primeros dos valores propios, a los cuales nombraremos, $\lambda_{-}=-\frac{\gamma}{2}(2\bar{n}+1)-i\omega$ y $\lambda_{+}=-\frac{\gamma}{2}(2\bar{n}+1)+i\omega$. Para estos valores de $\lambda$ las ecuaciones (27) y (28) no se satisfacen a menos que $a=d=0$, y puesto que deben de ser linealmente independientes, se encuentra que sus eigenelementos son
+
+\begin{align*}
+\rho_{+} &= \left|+\right\rangle	\left\langle -\right|		& \lambda_{+} = -\frac{\gamma}{2}(2\bar{n}+1)+i\omega \\
+\rho_{-} &= \left|-\right\rangle	\left\langle +\right|		& \lambda_{-} = -\frac{\gamma}{2}(2\bar{n}+1)-i\omega
+\end{align*}
+
+Para encontrar los otros eigenelementos, pongamos atención a las ecuaciones (27) y (28),
+
+\begin{align*}
+-\gamma(\bar{n}+1) a + \gamma \bar{n} d &= \lambda a \\
+\gamma(\bar{n}+1) a - \gamma \bar{n} d &= \lambda d \\
+\cline{1-2}
+0 &= \lambda(a+d)
+\end{align*}
+
+Hay dos posibilidades de satisfacer estas ecuaciones $\lambda=0$ y $a=-d$; y puesto que la elección de $b$ y $c$ no afectan, ponemos $b=c=0$. Para la primera posibilidad, obtenemos
+
+\begin{equation*}
+\rho_{0} =\bar{n} \left|+\right\rangle\left\langle +\right| + ( \bar{n}+1) \left|-\right\rangle\left\langle -\right| \hspace{20mm} \lambda_{0} = 0
+\end{equation*}
+
+Para $a=-d$ obtenemos
+
+\begin{equation*}
+\rho_{z} =\left|+\right\rangle\left\langle +\right| - \left|-\right\rangle\left\langle -\right| \hspace{25mm} \lambda_{z} = -\gamma (2\bar{n}+1)
+\end{equation*}
+
+Note que los eigenelementos no son mas que $\sigma_{z}$, $\sigma_{+}$, $\sigma_{-}$ y una matriz diagonal, y como ya sabemos, estás forman una base para las matrices de $2\times2$.
+
+El mismo procedimiento es aplicado para poder encontrar los eigenelementos duales, siguiendo la siguiente ecuación
+
+\begin{eqnarray*}
+\check{\mathcal{L}} \rho = & & \frac{i\omega}{2}[\sigma_{z}, \rho]\\
+													 &+& \frac{\gamma}{2}(\bar{n}+1)[2\sigma_{+}\rho\sigma_{-} - \sigma_{-}\sigma_{+}\rho - \rho\sigma_{-}\sigma_{+}]\\
+													 &+& \frac{\gamma}{2}\bar{n}[2\sigma_{-}\rho\sigma_{+}-\sigma_{+}\sigma_{-}\rho - \rho\sigma_{+}\sigma_{-}]
+\end{eqnarray*}
+
+Obteniendo
+
+\begin{align*}
+\check{\rho}_{0} &= -\left|+\right\rangle\left\langle +\right| + \left|-\right\rangle\left\langle -\right| & \lambda_{0} &= 0\\
+\check{\rho}_{z} &= (\bar{n} + 1)\left|+\right\rangle\left\langle + \right| + \bar{n}\left|-\right\rangle\left\langle -\right| & \lambda_{z} &= -\gamma(2\bar{n}+1) \\
+\check{\rho}_{+} &= \left|+\right\rangle	\left\langle -\right|		& \lambda_{+} &= -\frac{\gamma}{2}(2\bar{n}+1)+i\omega \\
+\check{\rho}_{-} &= \left|-\right\rangle	\left\langle +\right|		& \lambda_{-} &= -\frac{\gamma}{2}(2\bar{n}+1)-i\omega
+\end{align*}
+
+\subsubsection*{El Oscilador armónico amortiguado}
+
+
+Para este sistema, el cálculo tendrá un poco más de dificutad debido a que, como deduciremos, los eigenelementos no se reducirán a sólo cuatro, sino serán un conjunto infinito. El sistema considerado, sigue la ecuación
+
+\begin{eqnarray*}
+\mathcal{L}\rho = &-&\frac{A}{2}(\nu+1)[a^{\dag}a\rho + \rho a^{\dag}a - 2a\rho a^{\dag}]\\
+									&-&\frac{A}{2}\nu[a a^{\dag}\rho + \rho a a^{\dag} - 2a^{\dag}\rho a]
+\end{eqnarray*}
+
+en el esquema de interacción. Y por lo tanto los eigenelmentos están dados por $\mathcal{L} \rho_{\lambda} = \lambda \rho_{\lambda}$. Debido a que el amortiguamiento puro no acoplará las diferentes diagonales de un estado en la base de número, se propone el ansatz
+
+\begin{equation}
+\rho_{\lambda} = {a^{\dag}}^{k}f(a^{\dag}a)
+\end{equation}
+
+o también
+
+\begin{equation}
+\rho_{\lambda} = f(a^{\dag}a)a^{k}
+\end{equation}
+
+Usando el primer ansatz y siguiendo el orden natural de las funciones, es decir, siempre dejando los operadores de creación $a^{\dag}$ a la izquierda de los operadores de aniquilación $a$; para el atenuador
+
+\begin{equation}
+A(\nu+1)\left\{[k/2 + 1]{a^{\dag}}^{k}f(a^{\dag}a) + (k+1){a^{\dag}}^{k}f^{\prime}(a^{\dag}a)+ {a^{\dag}}^{k+1}[f^{\prime}(a^{\dag}a) + f^{\prime \prime}(a^{\dag}a)]a \right\} \nonumber
+\end{equation} 
+
+y para el amplificador
+
+
+\begin{equation}
+-A\nu\left\{ (k/2 + 1){a^{\dag}}^{k}f(a^{\dag}a) + (k+1){a^{\dag}}^{k}f^{\prime}(a^{\dag}a)a \right\} \nonumber
+\end{equation}
+
+
+donde se han utilizando las siguientes relaciones
+
+\begin{equation}
+f(a^{\dag}a)a^{\dag} = a^{\dag}[f(a^{\dag}a) + f'(a^{\dag}a)]
+\end{equation}
+
+
+\begin{equation}
+a f(a^{\dag}a) = [f(a^{\dag}a) + f'(a^{\dag}a)]a
+\end{equation}
+
+Por lo tanto, la ecuación de eigenvalores queda
+
+\begin{equation*}
+(\nu+1)a^{\dag}f''(a^{\dag}a)a + a^{\dag}f'(a^{\dag}a) a + (\nu+1)(k+1)f'(a^{\dag}a) + (k/2+1-\lambda/2)f(a^{\dag}a)=0
+\end{equation*}
+
+la cual, usando la identidad
+
+\begin{equation}
+a^{\dag} :f(a^{\dag}a): a = :a^{\dag}af(a^{\dag}a):
+\end{equation}
+
+donde $:f(a^{\dag}a):$ es una función ordenada de forma normal, se convierte en una ecuación diferencial de Kummer si tomamos a $\frac{-z}{\nu + 1}$ como variable, con $z=a^{\dag}a$. Donde las soluciones están dadas en forma de polinomios si la constante por la que está multiplicada $f(z)$ es un entero negativo, dando a relucir 
+
+\begin{equation}
+\lambda = -A(n+ k/2)
+\end{equation}
+
+\begin{equation}
+\rho(z) = \exp\left(\frac{-z}{\nu+1}\right)L_{n}^{k}\left( \frac{-z}{\nu+1} \right)
+\end{equation}
+
+Haciendo lo mismo para el segundo ansatz, se logra encontrar 
+
+\begin{equation}
+\mathcal{L}\rho_{n}^{(k)} = -A\left(n + \frac{|k|}{2} \right)\\
+\end{equation}
+
+para $n=0,1,2...$ y $k=0,\pm 1, \pm 2,...$ con
+
+\[\rho_{n}^{(k)} = \left\{
+  \begin{array}{lr}
+    {a^{\dag}}^{k}\frac{(-1)^n}{(a+\nu)^{k+1}}:\exp\left(\frac{-z}{\nu+1}\right)L_{n}^{k}\left( \frac{-z}{\nu+1} \right): & : k \geq 0\\
+   \frac{(-1)^n}{(a+\nu)^{|k|+1}}:\exp\left(\frac{-z}{\nu+1}\right)L_{n}^{|k|}\left( \frac{-z}{\nu+1} \right):a^{|k|} & : k \leq 0
+  \end{array}
+\right.
+\]
+
+donde $L_{n}^{k}$ son los polinomios generalizados de Laguerre. El cálculo es análogo para los eigenelementos duales, dados por la siguiente ecuación
+
+\begin{eqnarray*}
+\check{\mathcal{L}}\rho = &-&\frac{A}{2}(\nu+1)[a^{\dag}a\rho + \rho a^{\dag}a - 2a^{\dag}\rho a]\\
+									&-&\frac{A}{2}\nu[a a^{\dag}\rho + \rho a a a^{\dag} - 2a\rho a^{\dag}]
+\end{eqnarray*}
+
+llegando a una ecuación diferencial de Laguerre, donde las soluciones analíticas se restringen cuando los eigenvalores siguen la ecuación (38), tomando $-z/\nu$ como la variable
+
+
+\[\check{\rho}_{n}^{(k)} = \left\{
+  \begin{array}{lr}
+    \left(\frac{-\nu}{1+\nu}\right)^{n}\frac{n!}{(n+k)!}:L_{n}^{(k)}\left(\frac{a^{\dag}a}{\nu}\right):a^{k} & : k \geq 0\\
+   \left(\frac{-\nu}{1+\nu}\right)^{n}\frac{n!}{(n+|k|)!}{a^{\dag}}^{|k|}:L_{n}^{(|k|)}\left(\frac{a^{\dag}a}{\nu}\right): & : k \leq 0
+  \end{array}
+\right.
+\]
+
+Note que los ansatz que cumplen con la función de no mezclar las diagonales debieron haber sido dados con más generalidad, es decir, sin saber que la función que que multiplica a ${a^{\dag}}^{k}$ y $a^{k}$ sería función del operador de número $a^{\dag}a$. Sin embargo, el mismo resultado al que hemos llegado es deducido de forma más general en [RefStenholm].
+
+
+\section*{Técnica de proyecciones de Nakajima-Zwanzig}
+
+Considere una ecuación del tipo von-Neumann en la notación del operador de Liouville
+
+\begin{equation}
+\label{vonneumann}
+\frac{\partial \rho}{\partial t}=\mathcal{L}\rho
+\end{equation}
+
+tiene una solución formal, dada por su valor inicial, tal que
+
+\begin{equation}
+\rho(t)=e^{t\mathcal{L}}\rho(0)
+\end{equation}
+
+donde nos faltaría saber de que manera actua el superoperador exponencial $exp[t\mathcal{L}]$ sobre el valor inicial, sin embargo, en caso de poder dividir $\mathcal{L}$ en una parte sin perturbación, $\mathcal{L}_{0}$, y una perturación dada por $\mathcal{L}_{1}$, podemos desarrollarlo como
+
+\begin{equation}
+e^{t\mathcal{L}}=e^{t\mathcal{L}_{0}}+\int_{0}^{t}dt^{\prime}e^{(t-t^{\prime})\mathcal{L}_{0}}\mathcal{L}_{1}e^{t^{\prime}\mathcal{L}_{0}}
+\end{equation}
+
+a primer orden. Note que el desarrollo perturbacional siempre aparecerá del lado derecho del valor inicial, y no es necesario juntar las contribuciones de ambos lados. Pero la verdadera ventaja recae en una técnica desarrolla de por Nakajima-Zwanzig en [RefNakajima], la cual, desarrollaremos en los siguientes parrafos. Tal técnica consiste  en separar el operador densidad en una parte que llamaremos relevante y en una irrelevante, a través de operadores de proyección. La parte relevante la definiremos como la parte diagonal $\rho_{1}$ del operador, y la irrelevante, como la parte no-diagonal $\rho_{2}$.
+
+\begin{equation}
+\rho=\mathcal{D}\rho+(1-\mathcal{D})\rho
+\end{equation}
+ 
+donde $\mathcal{D}$ selecciona $\rho_{1}$ y $(1-\mathcal{D})$ selecciona $\rho_{2}$. Evidentemente para que el proceso de proyección sea consistente, la proyección debe de cumplir $\mathcal{D}^2=\mathcal{D}$.Y de la misma manera la transformada de Laplace $g(s)$ separa en una parte diagonal $g_{1}(s)$ y una no-diagonal $g_{2}(s)$
+
+
+\begin{equation}
+g(s)=\mathcal{D}g(s)+(1-\mathcal{D})g(s)
+\end{equation}
+
+Ahora, tomemos (\ref{vonneumann}) y hagámosle el mismo tratamiento, separemos su parte relevante de la irrelevante
+
+\begin{equation}
+\mathcal{D}sg(s)-\mathcal{D}\rho(0)=\mathcal{D}\mathcal{L}g(s)
+\end{equation}
+
+\begin{equation}
+(1-\mathcal{D})sg(s)-(1-\mathcal{D})\rho(0)=(1-\mathcal{D})\mathcal{L}g(s)
+\end{equation}
+
+o similarmente
+
+
+\begin{equation}
+\label{guno}
+sg_{1}(s)-\rho_{1}(0)=\mathcal{D}\mathcal{L}g_{1}(s)+\mathcal{D}\mathcal{L}g_{2}(s)
+\end{equation}
+
+\begin{equation}
+sg_{2}(s)-\rho_{2}(0)=(1-\mathcal{D})\mathcal{L}g_{1}(s)+(1-\mathcal{D})\mathcal{L}g_{2}(s)
+\end{equation}
+
+Resolviendo para $g_{2}(s)$ y sustituyendo en (\ref{guno}) obtenemos
+
+\begin{equation}
+sg_{1}(s)-\rho_{1}(0)=\mathcal{DL}g_{1}(s)+\mathcal{DL}\frac{\rho_{2}(0)+(1-\mathcal{D}\mathcal{L}g_{1}(s))}{s-(1-\mathcal{D}\mathcal{L})}
+\end{equation}
+
+usando que la transformada inversa de Laplace de un producto es una convolución, se obtiene la ecuación de evolución de la parte relevante (diagonal)
+
+\begin{eqnarray}
+\label{rho1}
+\frac{d\rho_{1}}{dt}=\mathcal{DL}\rho_{1}&+&\mathcal{DL}e^{(1-\mathcal{D})\mathcal{L}t}\rho_{2}(0)\\ \nonumber
+&+&\int_{0}^{t}\mathcal{DL}dt^{\prime}e^{(1-\mathcal{D})\mathcal{L}t^{\prime}}(1-\mathcal{D})\mathcal{L}\rho_{1}(t-t^\prime)
+\end{eqnarray}
+
+Note que el segundo término depende explicitamente de la condición inicial de los valores no-diagonales de operador, de tal manera que para la mayoría de las aplicaciones de las ecuaciones maestras, podemos elegir, $\rho_{2}(0)=0$. A esto se le conoce comunmente como suposición de las fases aleatorias iniciales [RefNakajima]. Cuando esta suposición es aplicada, la ecuación maestra efectiva de los elementos diagonales (\ref{rho1}) no hace referencia alguna de los elementos fuera de la diagonal, y por tanto, la evolución de la misma, sólo reacaerá en los elementos asignados como relevantes.
+
+
+El tercer término de la ecuación (\ref{rho1}) suele ser el más importante, es por esto, que a
+
+\begin{equation}
+K(t)=\mathcal{DL}e^{(1-\mathcal{D})\mathcal{L}t}(1-\mathcal{D})\mathcal{L}
+\end{equation}
+
+se le llama núcleo de memoria
+
+ En caso de un sistema acoplado con un ambiente, tales superoperadores que usaremos para proyectar son mapeos en el espacio del sistema combinado, esto es, en el espacio de operadores densidad del espacio de Hilbert total $\mathcal{H}=\mathcal{H}_s\otimes\mathcal{H}_B$ [RefBreuer]. La parte relevante vendría dada como
+
+\begin{equation}
+\rho\mapsto \mathcal{D}\rho=Tr_{B}[\rho]\otimes\rho_{B}
+\end{equation}
+
+para un $\rho_B$ siendo un operador perteneciente a $\mathcal{H}_{B}$, también llamado estado de referencia, debido a que la elección de tal operador depende de la aplicación que se le vaya a dar a la técnica
+
+
+\section*{Conclusiones}
+Se ha descrito un método en el cual el cálculo de la evolución temporal del operador densidad es sumamente explícito y por consiguiente la identificación del estado estacionario del mismo también lo es. De igual manera, bastaría sólo con conocer la condición inicial del operador densidad para obtener los valor de expectación del los observables de interés y por lo tanto, a traves del teorema de la regresión cuántica, las correlaciones de tales observables. También, se describió las técnicas implementadas por Nakajima-Zwanzig con la finalidad de que a través de la base de decaimiento, implementar proyecciones en un sistema a conveniencia.
+
+
+
+
+
+
+\end{document}
