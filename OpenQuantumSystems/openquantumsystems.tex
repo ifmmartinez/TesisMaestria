@@ -1,0 +1,695 @@
+\documentclass[a4paper,openright,12pt]{book}
+\usepackage[spanish]{babel} % espaÃ±ol
+\usepackage[latin1]{inputenc} % acentos sin codigo
+\usepackage{graphicx} % graficos
+\usepackage{subfigure}
+\usepackage{amsmath}%
+\usepackage{amsfonts}%
+\usepackage{amssymb}%
+\usepackage{braket}
+
+
+
+
+\begin{document}
+
+
+\pagenumbering{arabic} % para empezar la numeración con números
+
+\chapter*{Sistemas Cuánticos Abiertos}
+
+
+\section*{Introducción}
+La disipación en sistemas cuantizados es uno de los temas fundamentales a tratar en esta tesis. Para poder abordarlo de una manera adecuada, partiremos de uno de los esquemas más útiles dentro de los sistemas cuánticos abiertos, el oscilador armónico amortiguado, el cual, describiría un modo de oscilación del campo electromagnético en una cavidad con pérdidas (cavidad con espejos imperfectos). La necesidad de desarrollar tal tratamiento es debido a la importancia de poner en contexto la teoría cuántica de un laser o maser. Sin embargo, existen otros sistemas, los cuales, representan uno de los enfoques de la investigación actual, por ejemplo, los atómos de dos y tres niveles con disipación.
+
+\section*{Una perspectiva clásica}
+En mecánica clásica, la manera en la simulabamos decaimiento en la amplitud de un oscilador o disipación de energía en el mismo, era construir una fuerza de fricción, la cual frenaría a la partícula y poco a poco haría decaer la amplitud de su movimiento.
+
+El Hamiltoniano de un oscilador armónico
+
+\begin{equation}
+H= \frac{p^2}{2m}+\frac{1}{2}m\omega^{2}q^2
+\end{equation}
+
+y por lo tanto sus ecuaciones de movimiento, a partir de las ecuaciones canónicas de Hamilton
+
+\begin{equation}
+\dot{q}=p/m \nonumber
+\end{equation}
+
+
+\begin{equation}
+\dot{p}=-m\omega^2 q \nonumber
+\end{equation}
+
+
+
+\begin{figure}[htbp]
+\centering
+\subfigure[Evolución de la posición]{\includegraphics[width=70mm]{./imagenes/armonicoscillator.eps}}
+\subfigure[Espacio fase]{\includegraphics[width=46mm]{./imagenes/phasespaceoscilattor.eps}}
+\caption{Movimiento de un oscilador armónico clásico para diferentes parámetros} \label{fig:osciladorarmonico}
+\end{figure}
+
+
+Note que si agregamos una fuerza tal como se describió anteriormente $F=-\gamma p$ y rearreglamos, podemos llegar a la famosa ecuación del oscilador armónico amortiguado
+
+\begin{equation}
+\label{dampedoscilator}
+\ddot{q}+\gamma \dot{q}+\omega^2 q=0
+\end{equation}
+
+
+\begin{figure}[htbp]
+\centering
+\subfigure[Evolución de la posición]{\includegraphics[width=70mm]{./imagenes/dampedarmonicoscillator1.eps}}
+\subfigure[Espacio fase]{\includegraphics[width=46mm]{./imagenes/dampedphasespaceoscilattor.eps}}
+\caption{Ejemplo del movimiento de un oscilador subamortiguado} \label{fig:dampedosciladorarmonico}
+\end{figure}
+
+
+
+¿Se puede, simplemente, cuantizar canónicamente? Es decir, promover $q$ y $p$ a operadores $\hat{q}$ y $\hat{p}$, pero que aún así conserven el principio de conmutación y por lo tanto el principio de incertidumbre de Heisemberg
+
+\begin{equation}
+\left[\hat{q},\hat{p}\right]=i\hbar
+\end{equation}
+
+Para dar solución a ello, consideremos la evolución de tal conmutador
+
+\begin{equation}
+\frac{d}{dt}\left[\hat{q},\hat{p}\right]=\dot{\hat{q}}\hat{p}+\hat{q}\dot{\hat{p}}-\dot{\hat{p}}\hat{q}-\hat{p}\dot{\hat{q}}=-\gamma\left[\hat{q},\hat{p}\right]
+\end{equation}
+
+por lo tanto
+
+\begin{equation}
+\label{conmutadordecae}
+\left[\hat{q}(t),\hat{p}(t)\right]=e^{-\gamma t}\left[\hat{q}(0),\hat{p}(0)\right]=i\hbar e^{-\gamma t}
+\end{equation}
+
+
+Como consecuencia del decaimiento mostrado en (\ref{conmutadordecae}) la relación de incertidumbre sufrirá del mismo comportamiento. En presencia de este tipo de problemas, ha habido varias maneras de incorporar disipación dentro de la mecánica cuántica, sin embargo, en muchos de los dominios de la teoría cuántica, la disipación no juega ningún rol fundamental; por ejemplo, el análisis de la estructura atómica. El panorama es muy diferente en Óptica Cuántica, el desarrollo de los métodos que le den tratado a una teoría cuántica disipativa, juega uno de los roles más importantes.
+
+\section*{Sistemas Cuánticos ¿Abiertos?}
+
+Un sistema cuántico abierto se refiere a aquel sistema microscópico, el cual, tenga un acoplamiento con un reservorio, proveyendo un fenómeno de disipación. A pesar de que el procedimiento de la sección anterior parece adecuado, dentro de una perspectiva clásica, nos da una descripción incompleta de la realidad física. Note que la fueza agregada en (\ref{dampedoscilator}) rompe con la simetría ante inversiones temporales, es decir, se genera una irreversibilidad. Esta irreversibilidad la reconoceremos como parte de una interacción del sistema con un sistema más grande y complejo, al cual le llamaremos Entorno o Ambiente. Sí decimos que tal sistema es mucho más grande que nuestro sistema principal, este, lo forzará a tender hacía su propio comportamiento a través de una fuerza $F(t)$, por lo cual, con más generalidad
+
+\begin{equation}
+\ddot{q}+\gamma \dot{q}+\omega^2 q=\frac{F(t)}{m}
+\end{equation}
+
+Observemos que ahora la disipación la estamos concebiendo como una interacción Sistema-Entorno, ¿solucionará, esto, el problema de los conmutadores? Considere dos osciladores armónicos acoplados en la aproximación de onda rotante (RWA por sus siglas en inglés), el Hamiltoniano
+
+\begin{equation}
+H=\hbar \omega a^{\dag}a +\hbar \omega b^{\dag}b+ \hbar\kappa(a^{\dag}b+ab^{\dag})
+\end{equation}
+
+donde $\omega$ es la frecuencia de los osciladores (note que son resonantes), $\kappa$ es la constante de acoplamiento, $a^{\dag}$ y $b^{\dag}$ son operadores de creación ($a$ y $b$ son operadores de aniquilación) que satisfacen las relaciones
+
+\begin{equation}
+\left[a,a^{\dag}\right]=1 \nonumber
+\end{equation}
+
+\begin{equation}
+\left[b,b^{\dag}\right]=1 \nonumber
+\end{equation}
+
+Pasando al esquema de Heisemberg podemos encontrar las ecuaciones de evolución de tales operadores, obteniendo
+
+\begin{equation}
+i\frac{da(t)}{dt}-\omega a(t)=\kappa b(t)
+\end{equation}
+
+\begin{equation}
+i\frac{db(t)}{dt}-\omega b(t)=\kappa a(t)
+\end{equation}
+
+junto con sus complejos conjugados, que describirían a los operadores de creación. Donde las soluciones para la evolución son
+
+\begin{equation}
+a(t)=e^{i\omega t}\left[a(0)Cos(\kappa t)-ib(0)Sen(\kappa t)\right]
+\end{equation}
+
+\begin{equation}
+b(t)=e^{i\omega t}\left[b(0)Cos(\kappa t)-ia(0)Sen(\kappa t)\right]
+\end{equation}
+
+Y por lo tanto las reglas de conmutación
+
+\begin{equation}
+\left[a(t),a^{\dag}(t)\right]=\left[a(0),a^{\dag}(0)\right]Sen^{2}(\kappa t)+\left[b(0),b^{\dag}(0)\right]Cos^{2}(\kappa t)=1
+\end{equation}
+
+Debemos notar que las reglas de conmutación son preservadas si, y sólo si, tenemos un operador $b(0)$ mezclado en la solución de $a(t)$. Por tanto, si tomamos en cuenta que el sistema está interactuando con un Entorno, dentro de nuestro tratado de disipación, podemos anticipar, que tal mezcla de sistemas nos da como resultado la preservación de la conmutación de operadores de creación y aniquilación, y por consiguiente, del principio de Incertidumbre.
+
+Con tal filosofía en mente, ahora describiremos el Hamiltoniano de un Sistema Cuántico Abierto, como
+
+\begin{equation}
+\label{hamiltoniansr}
+H=H_S + H_R + H_{SR}
+\end{equation}
+
+donde $H_S$ y $H_R$ son los Hamiltonianos del Sistema y el Entorno, respectivamente, y $H_{SR}$ el Hamiltoniano de la interacción entre ambos. Sin embargo, nuestro interés principal siempre será el sistema, pasando a segundo plano de importancia al Entorno.
+
+Considere a $\chi(t)$ el operador densidad del sistema compuesto $S\oplus R$, de tal manera que el operador densidad reducido que describirá a $S$ sea
+
+\begin{equation}
+\rho(t)\equiv Tr_{R}\left\{\chi(t)\right\}
+\end{equation}
+
+donde se ha tomado la traza en los grados de libertad del Entorno. Claramente, si $\hat{O}$ es un operador perteneciente al espacio de Hilbert de $S$, su valor esperado (en el esquema de Schrödinger) dependerá sólo de $\rho(t)$ y no del operador densidad del sistema compuesto $\chi(t)$
+
+\begin{equation}
+\braket{\hat{O}}=Tr_{S\oplus R}\left\{\hat{O}\chi(t)\right\}=Tr_{S}\left\{\hat{O}Tr_{R}\left[\chi(t)\right]\right\}=Tr_{S}\left\{\hat{O}\rho(t)\right\}
+\end{equation}
+
+y por lo tanto, nuestro objetivo será encontrar el estado del sistema a todo tiempo $\rho(t)$, tomando en cuenta que el Entorno funjirá como parámetros que regulen el sistema de alguna u otra manera.
+
+\section*{Ecuación Maestra}
+
+La ecuación de evolución del sistema conjunto
+
+\begin{equation}
+\dot{\chi}=\frac{1}{i\hbar}\left[H,\chi\right]
+\end{equation}
+
+
+donde $H$ está dado por (\ref{hamiltoniansr}). Pasando al esquema de interacción, separando la evolución rápida generada por $H_S + H_R$, de la lenta, generada por $H_{SR}$ (RefCarmichael)
+
+\begin{equation}
+\label{interactionpicturechi}
+\widetilde{\chi}(t)\equiv e^{(1/\hbar)(H_S + H_R)t}\chi(t)e^{-(1/\hbar)(H_S + H_R)t}
+\end{equation}
+
+entonces su evolución queda como
+
+
+\begin{equation}
+\label{evolucionchi}
+\dot{\widetilde{\chi}}(t)=\frac{1}{i\hbar}\left[\widetilde{H}_{SR}(t),\widetilde{\chi}\right]
+\end{equation}
+
+con $\widetilde{H}_{SR}$ dependiendo explicitamente del tiempo, puesto que se ha transformado de la misma forma que (\ref{interactionpicturechi}). Integrando directamente (\ref{evolucionchi})
+
+
+\begin{equation}
+\widetilde{\chi}(t)=\widetilde{\chi}(0)+\frac{1}{i\hbar}\int^{t}_{0}dt^{\prime}\left[\widetilde{H}_{SR}(t^{\prime}),\widetilde{\chi}(t^{\prime})\right]
+\end{equation}
+
+
+y por tanto la evolución del operador de densidad del sistema completo quedaría
+
+
+\begin{equation}
+\label{evolucionchiserie}
+\dot{\widetilde{\chi}}(t)=\frac{1}{i\hbar}\left[\widetilde{H}_{SR}(t),\widetilde{\chi}(0)\right]-\frac{1}{\hbar^2}\int^{t}_{0}dt^{\prime}\left[\widetilde{H}_{SR}(t),\left[\widetilde{H}_{SR}(t^{\prime}),\widetilde{\chi}(t^{\prime})\right]\right]
+\end{equation}
+
+
+Note que se podrían tomar más términos, similar a una serie de Born, sin embargo, puesto que la constante que marcará la seriación es $1/\hbar$, es una buena aproximación. Si asumimos que la interacción comenzó a actuar sobre el sistema a tiempo $t=0$, por lo tanto, no existirían correlaciones entre el sistema y su Entorno antes de tal tiempo. Entonces $\chi(0)=\widetilde{\chi}(0)$ sería factorizable
+
+
+\begin{equation}
+\widetilde{\chi}(0)=\rho(0)R_{0}
+\end{equation}
+
+
+donde hemos asignado $R_{0}$ como el operador densidad del Entorno, inicialmente. Por consiguiente, como se ha dicho antes, el principal objetivo será encontrar la evolución de $\rho(t)$. Note que
+
+
+
+\begin{equation}
+\label{rhotilde}
+Tr_{R}\left\{\widetilde{\chi}(t)\right\}=e^{(1/\hbar)(H_S)t}\rho(t)e^{-(1/\hbar)(H_S)t}\equiv\widetilde{\rho}(t)
+\end{equation}
+
+y al igual que (\ref{rhotilde}) podemos trazar sobre (\ref{evolucionchiserie}), lo cual nos da la \textit{ecuación maestra} del sistema, es decir nos describe el estado del sistema a todo tiempo,
+
+
+
+\begin{equation}
+\label{widetilderhoevolution}
+\dot{\widetilde{\rho}}(t)=-\frac{1}{\hbar^2}\int^{t}_{0}dt^{\prime}Tr_{R}\left[\widetilde{H}_{SR}(t),\left[\widetilde{H}_{SR}(t^{\prime}),\widetilde{\chi}(t^{\prime})\right]\right]
+\end{equation}
+
+por simplicidad se ha eliminado el término $(1/i\hbar)Tr_{R}\left[\widetilde{H}_{SR}(t),\chi(0)\right]$, lo cual es garantizado en caso de que los valores promedio de los operadores del Entorno acoplados al Sistema se desvanezcan para el estado inicial $R_0$. Hemos asumido la separabilidad del estado del sistema conjunto a $t=0$, sin embargo, para tiempos mayores que ese, las correlaciones entre $S$ y $R$ deberían de aumentar debido a la interacción entre ellos; sin embargo, hemos asumido que el acoplamiento Sistema-Entorno está dado a través de una interacción débil, por tanto, $\widetilde{\chi}(t)$ debería mostrar solo pequeñas desviaciones, de un estado separable, del orden de $H_{SR}$. Además, puesto que $R$ es un sistema mucho más grande que $S$, debería de regularse, a fin de mantenerse virtualmente sin afectaciones debidas al Sistema $S$.
+
+\begin{equation}
+\widetilde{\chi}(t)=\widetilde{\rho}(t)R_0+O(H_{SR})
+\end{equation}
+
+a esto, se le llama la \textit{aproximación de Born}. Sustituyendo en (\ref{widetilderhoevolution}) y despreciando términos arriba de segundo orden en $H_{SR}$, obtenemos
+
+
+\begin{equation}
+\dot{\widetilde{\rho}}(t)=-\frac{1}{\hbar^2}\int^{t}_{0}dt^{\prime}Tr_{R}\left[\widetilde{H}_{SR}(t),\left[\widetilde{H}_{SR}(t^{\prime}),\widetilde{\rho}(t^{\prime})R_{0}\right]\right]
+\end{equation}
+
+Note que la evolución del sistema a tiempo $t$ depende de una integral que tiene como límites $[0,t]$, es decir, la evolución del sistema depende de su historia pasada, esto hace que la ecuación se torne complicada, a esto se le llama no-Markovianidad (El futuro de un sistema Markoviano depende sólo del estado en que se encuentra). Por lo tanto, nuestra segunda gran aproximación, la \textit{aproximación de Markoff}, nos permite tomar $\widetilde{\rho}(t^{\prime})$ y sustituirlo por $\widetilde{\rho}(t)$, obteniendo
+
+
+\begin{equation}
+\label{bornmarkov}
+\dot{\widetilde{\rho}}(t)=-\frac{1}{\hbar^2}\int^{t}_{0}dt^{\prime}Tr_{R}\left[\widetilde{H}_{SR}(t),\left[\widetilde{H}_{SR}(t^{\prime}),\widetilde{\rho}(t)R_{0}\right]\right]
+\end{equation}
+
+a lo cual se le llama, \textit{Ecuación Maestra en la aproximación de Born-Markoff}.
+
+Un comportamiento Marcoviano parece sumamente razonable dentro de los terrenos de la física que hemos descrito. Potencialmente, $S$ puede depender de su pasado debido a que sus estados anteriores fueron plasmados en $R$ a través de la interacción $H_{SR}$. Pero, sí el Entorno se considera como un sistema muy grande y se mantiene inmutable, esto podría ser medido a apartir de las correlaciones del comportamiento del mismo. Es decir, ver la escala temporal en la que $S$ podría afectar a $R$. Hagamos más específico el modelo
+
+\begin{equation}
+\label{hsr}
+H_{SR}=\hbar\sum_{i}s_{i}\Gamma_{i}
+\end{equation}
+
+donde $s_{i}$ y $\Gamma_{i}$ son operadores en el espacio de Hilbert del Sistema y el Entorno, respectivamente. Por tanto, transformando como (\ref{interactionpicturechi})
+
+\begin{equation}
+\widetilde{H}_{SR}(t)=\hbar\sum_{i}\widetilde{s}_{i}(t)\widetilde{\Gamma}_{i}(t)
+\end{equation}
+
+y sustituyendo en la ecuación maestra antes de que hicieramos la aproximación de Markoff
+
+\begin{eqnarray}
+\label{muchosterminos}
+\dot{\widetilde{\rho}}&=&\sum_{i,j}\int^{t}_{0}dt^{\prime}\left[ \widetilde{s}_{j}(t^{\prime})\widetilde{\rho}(t^{\prime})\widetilde{s}_{i}(t)- \widetilde{s}_{i}(t)\widetilde{s}_{j}(t^{\prime})\widetilde{\rho}(t^{\prime})\right]\braket{\widetilde{\Gamma}_{i}(t)\widetilde{\Gamma}_{j}(t^{\prime})}_{R} \nonumber \\ 
+											&+&\sum_{i,j}\int^{t}_{0}dt^{\prime}\left[\widetilde{s}_{i}(t)\widetilde{\rho}(t^{\prime})\widetilde{s}_{j}(t^{\prime})-\widetilde{\rho}(t^{\prime})\widetilde{s}_{j}(t^{\prime})\widetilde{s}_{i}(t)\right]\braket{\widetilde{\Gamma}_{j}(t^{\prime})\widetilde{\Gamma}_{i}(t)}_{R}
+\end{eqnarray}
+
+Note que las propiedades de $R$ afectan a nuestro sistema, a través de las correlaciones $\braket{\widetilde{\Gamma}_{i}(t)\widetilde{\Gamma}_{j}(t^{\prime})}_{R}$ y $\braket{\widetilde{\Gamma}_{j}(t^{\prime})\widetilde{\Gamma}_{i}(t)}_{R}$. Matemáticamente, podemos justificar la sustitución $\widetilde{\rho}(t^{\prime})\rightarrow\widetilde{\rho}(t)$ hecha en (\ref{bornmarkov}) si
+
+\begin{equation}
+\label{correlacionR}
+\braket{\widetilde{\Gamma}_{i}(t)\widetilde{\Gamma}_{j}(t^{\prime})}_{R}\propto\delta(t-t^{\prime})
+\end{equation}
+
+
+es decir, que las correlaciones dadas por (\ref{correlacionR}) decaigan muy rápidamente dentro de la escala de tiempo para la cual $\widetilde{\rho}(t)$ varía. Por lo tanto la Aproximación de Markoff nos sugiere la existencia de dos escalas de tiempo ampliamente separadas: Una escala de tiempo lenta, en la cual se da la dinámica de $S$ y una rápida, que caracteriza el decaimiento de las funciones de correlación del Entorno.
+
+
+\section*{Ecuación Maestra para una cavidad óptica con disipación}
+
+Consideremos un modelo más explícito. Considere una cavidad óptica monomodal (sistema $S$) acoplado a un Reservorio a través de un espejo semitransparente. El Hamiltoniano del sistema compuesto $S\oplus R$ (\ref{hamiltoniansr})
+
+
+
+
+
+\begin{subequations}
+\begin{equation}
+H_{S}=\hbar \omega_{c}a^\dag a 
+\end{equation}
+\begin{equation}
+H_{R}=\sum_{j} \hbar \omega_{j}r_{j}^{\dag} r_{j}
+\end{equation}
+\begin{equation}
+H_{SR}=\sum_{j} \hbar \left(\kappa^{*}_{j}ar_{j}^{\dag}+\kappa_{j}a^{\dag}r_{j}\right)
+\end{equation}
+\end{subequations}
+
+El sistema S está descrito por un oscilador armónico con frecuencia $\omega_{c}$ y operadores de creación y aniquilación ($a$ y $a^{\dag}$); el entorno, por otro lado, es una colección de osciladores con frecuencias $\omega_{j}$, con sus correspondientes operadores de creación $r_{j}$ (aniquilación $r_{j}^{\dag}$). Note que el acoplamiento entre ambos sistemas está descrito en la aproximación de onda rotante (RWA). Tomando un entorno en equilibrrio térmico a temperatura ambiente, su operador densidad
+
+
+\begin{equation}
+\label{r0}
+R_{0}=\prod_{j}\left(1-e^{-\hbar \beta \omega_{j}}\right)e^{-\hbar\beta\omega_{j}r_{j}^{\dag}r_{j}}
+\end{equation}
+
+con la constante $\beta=1/k_{B}T$. Por identificación con (\ref{hsr})
+
+\begin{subequations}
+\begin{equation}
+s_{1}=a \hspace{30mm} s_{2}=a^{\dag}
+\end{equation}
+\begin{equation}
+\Gamma_{1}=\Gamma^{\dag}\equiv\sum_{j}\kappa^{*}_{j}r_{j}^{\dag} \hspace{10mm} \Gamma_{2}=\Gamma\equiv\sum_{j}\kappa_{j}r_{j}
+\end{equation}
+\end{subequations}
+
+pasando los operadores al esquema de interacción
+
+
+\begin{subequations}
+\begin{equation}
+\widetilde{s}_{1}(t)=e^{i\omega_{c}a^{\dag}a}ae^{-i\omega_{c}a^{\dag}a}
+\end{equation}
+\begin{equation}
+\widetilde{s}_{2}(t)=e^{i\omega_{c}a^{\dag}a}a^{\dag}e^{-i\omega_{c}a^{\dag}a}
+\end{equation}
+\end{subequations}
+
+Para poder simplificar los nuevos operadores, vea que estos, son de la forma $f(\alpha)=e^{\alpha A}B e^{-\alpha A}$; con la finalidad de desarrollar $f(\alpha)$ en series de Taylor, sus derivadas en el parámetro
+
+
+\begin{subequations}
+\begin{equation}
+f^{\prime}(\alpha)= e^{\alpha A}[A,B] e^{-\alpha A}
+\end{equation}
+\begin{equation}
+f^{\prime \prime}(\alpha)=e^{\alpha A}\left[A,[A,B]\right] e^{-\alpha A}
+\end{equation}
+\end{subequations}
+
+la expansión de Taylor nos dice
+
+\begin{equation}
+f(\alpha)=f(0)+\alpha f^{\prime}(0)+\frac{\alpha^2}{2!}f^{\prime \prime}(0)+\cdots
+\end{equation}
+
+y por tanto
+
+\begin{equation}
+e^{\alpha A}B e^{-\alpha A}=B+\alpha[A,B]+\frac{\alpha^2}{2!}\left[A,[A,B]\right]+\cdots
+\end{equation}
+
+asignando $A=a^{\dag}a$ y $B=a$ encontramos
+
+\begin{eqnarray}
+e^{\alpha a^{\dag}a}a e^{-\alpha a^{\dag}a}&=&a+\alpha[a,a^{\dag}a]+\frac{\alpha^2}{2!}\left[a,[a,a^{\dag}a]\right]+\cdots \nonumber \\
+																					 &=&a-\alpha a+\frac{\alpha^2}{2!}a+\cdots \nonumber \\
+																					 &=&e^{-\alpha}a
+\end{eqnarray}
+
+y similarmente para $B=a^{\dag}$
+
+\begin{equation}
+e^{\alpha a^{\dag}a}a^{\dag} e^{-\alpha a^{\dag}a} =e^{\alpha}a
+\end{equation}
+ 
+por lo cual
+
+
+\begin{subequations}
+\begin{equation}
+\widetilde{s}_{1}(t)=e^{i\omega_{c}a^{\dag}a}ae^{-i\omega_{c}a^{\dag}a}=a e^{-i\omega_{c}t}
+\end{equation}
+\begin{equation}
+\widetilde{s}_{2}(t)=e^{i\omega_{c}a^{\dag}a}a^{\dag}e^{-i\omega_{c}a^{\dag}a}=a^{\dag} e^{i\omega_{c}t}
+\end{equation}
+\end{subequations}
+
+y exactamente lo mismo para los operadores del Reservorio
+
+\begin{subequations}
+\begin{equation}
+\widetilde{\Gamma}_{1}(t)=\widetilde{\Gamma}^{\dag}(t)=\sum_{j}\kappa^{*}_{j}r_{j}^{\dag}e^{i\omega_{j}}
+\end{equation}
+\begin{equation}
+\widetilde{\Gamma}_{2}(t)=\widetilde{\Gamma}(t)=\sum_{j}\kappa_{j}r_{j}e^{-i\omega_{j}}
+\end{equation}
+\end{subequations}
+
+Sustituyendo los resultados en (\ref{muchosterminos}), obtenemos
+
+
+\begin{eqnarray}
+\dot{\widetilde{\rho}}(t)=&-&\int_{0}^{t}dt^{\prime}\left[aa\widetilde{\rho}(t^{\prime})-a\widetilde{\rho}(t^{\prime})a\right]e^{-i\omega_{c}(t+t^{\prime})}\braket{\widetilde{\Gamma}^{\dag}(t)\widetilde{\Gamma}^{\dag}(t^{\prime})}_{R}+h.c. \nonumber \\
+													&+&\left[a^{\dag}a^{\dag}\widetilde{\rho}(t^{\prime})-a^{\dag}\widetilde{\rho}(t^{\prime})a^{\dag}\right]e^{i\omega_{c}(t+t^{\prime})}\braket{\widetilde{\Gamma}(t)\widetilde{\Gamma}(t^{\prime})}_{R}+h.c. \nonumber \\
+													&+&\left[aa^{\dag}\widetilde{\rho}(t^{\prime})-a^{\dag}\widetilde{\rho}(t^{\prime})a\right]e^{-i\omega_{c}(t-t^{\prime})}\braket{\widetilde{\Gamma}^{\dag}(t)\widetilde{\Gamma}(t^{\prime})}_{R}+h.c. \nonumber \\
+													&+&\left[a^{\dag}a\widetilde{\rho}(t^{\prime})-a\widetilde{\rho}(t^{\prime})a^{\dag}\right]e^{i\omega_{c}(t-t^{\prime})}\braket{\widetilde{\Gamma}(t)\widetilde{\Gamma}^{\dag}(t^{\prime})}_{R}+h.c. 
+\end{eqnarray}
+
+donde las funciones de correlaciones del Entorno pueden ser calculadas explicitamente puesto que ya hemos propuesto $R_0$
+
+\begin{subequations}
+\begin{equation}
+\label{correlacion1}
+\braket{\widetilde{\Gamma}_{i}^{\dag}(t)\widetilde{\Gamma}^{\dag}_{j}(t^{\prime})}_{R}=\sum_{j,k}\kappa^{*}_{j}\kappa^{*}_{k}e^{i\omega_{j}t}e^{i\omega_{k}t^{\prime}}Tr_{R}\left(R_{0}r_{j}^{\dag}r_{k}^{\dag}\right)=0
+\end{equation}
+\begin{equation}
+\label{correlacion2}
+\braket{\widetilde{\Gamma}_{i}(t)\widetilde{\Gamma}_{j}(t^{\prime})}_{R}=\sum_{j,k}\kappa_{j}\kappa_{k}e^{-i\omega_{j}t}e^{-i\omega_{k}t^{\prime}}Tr_{R}\left(R_{0}r_{j}r_{k}\right)=0
+\end{equation}
+\end{subequations}
+
+debido a que las trazas se han hecho en la base de número, las ecuaciones (\ref{correlacion1}) y (\ref{correlacion2}) carecen de diagonal, y por tanto, se desvanecen. Sin embargo
+
+
+\begin{eqnarray}
+\braket{\widetilde{\Gamma}_{i}^{\dag}(t)\widetilde{\Gamma}_{j}(t^{\prime})}_{R}&=&\sum_{j,k}\kappa_{j}^{*}\kappa_{k}e^{i\omega_{j}t}e^{-i\omega_{k}t^{\prime}}Tr_{R}\left(R_{0}r_{j}^{\dag}r_{k}\right) \nonumber \\
+																																							 &=&\sum_{j}|\kappa_{j}|^2 e^{i\omega_{j}(t-t^{\prime})}\bar{n}(\omega_{j},T)
+\end{eqnarray}
+
+\begin{eqnarray}
+\braket{\widetilde{\Gamma}_{i}(t)\widetilde{\Gamma}^{\dag}_{j}(t^{\prime})}_{R}&=&\sum_{j,k}\kappa_{j}\kappa_{k}^{*}e^{-i\omega_{j}t}e^{-i\omega_{k}t^{\prime}}Tr_{R}\left(R_{0}r_{j}r_{k}^{\dag}\right) \nonumber \\
+																																							 &=&\sum_{j}|\kappa_{j}|^2 e^{-i\omega_{j}(t-t^{\prime})}[\bar{n}(\omega_{j},T)+1]
+\end{eqnarray}
+
+
+
+donde $\bar{n}(\omega_{j},T)$ es el número promedio de fotones para un oscilador de frecuencia $\omega_{j}$ a temperatura $T$.
+
+
+\begin{equation}
+\label{nbar}
+\bar{n}(\omega_{j},T)=\frac{e^{-\hbar\omega_{j}/k_{B}T}}{1-e^{-\hbar\omega_{j}/k_{B}T}}
+\end{equation}
+
+
+Las funciones de correlación del Reservorio, continen sumatorias sobre todos los modos de oscilación del mismo. Cambiaremos la sumatoria por una integración al introducir una densidad de estados $g(\omega)$, tal que, $g(\omega)d\omega$ sea el número de osciladores con frecuencias en el intérvalo $\omega+d\omega$. Para un campo unidimensional como el ilustrado
+
+
+\begin{equation}
+g(\omega)=L/2\pi c
+\end{equation}
+
+
+de modo que
+
+\begin{equation}
+\label{correlationtau}
+\braket{\widetilde{\Gamma}_{i}^{\dag}(t)\widetilde{\Gamma}_{j}(t-\tau)}_{R}=\int_{0}^{\infty}e^{i\omega\tau}g(\omega)|\kappa(\omega)|^{2}\bar{n}(\omega,T)
+\end{equation}
+
+\begin{equation}
+\label{correlationtau2}
+\braket{\widetilde{\Gamma}_{i}(t)\widetilde{\Gamma}^{\dag}_{j}(t-\tau)}_{R}\int_{0}^{\infty}e^{-i\omega\tau}g(\omega)|\kappa(\omega)|^{2}[\bar{n}(\omega,T)+1]
+\end{equation}
+
+donde se ha hecho un cambio de variable $\tau=t-t^{\prime}$, el cual, también aplicaremos a nuestra ecuación maestra
+
+
+\begin{eqnarray}
+\dot{\widetilde{\rho}}(t)=&-& \int_{0}^{t}d\tau [aa^{\dag}\widetilde{\rho}(t-\tau)-a^{\dag}\widetilde{\rho}(t-\tau)a]e^{-i\omega_{c}\tau}\braket{\widetilde{\Gamma}_{i}^{\dag}(t)\widetilde{\Gamma}_{j}(t-\tau)}_{R}+h.c \nonumber\\
+													&+& \int_{0}^{t}d\tau[a^{\dag}a\widetilde{\rho}(t-\tau)-a\widetilde{\rho}(t-\tau)a^{\dag}]e^{i\omega_{c}\tau}\braket{\widetilde{\Gamma}_{i}(t)\widetilde{\Gamma}^{\dag}_{j}(t-\tau)}_{R}+h.c \nonumber
+\end{eqnarray}
+
+
+¿Qúe tan buena es la aproximación de Markoff? viendo la forma explícita de (\ref{correlationtau}) y (\ref{correlationtau2}). La aproximación de Markoff asume que el tiempo de correlación $\tau$ es muy corto, comparado con la escala de tiempo de los cambios que son significativos para $\widetilde{\rho}$. La oscilación libre a frecuencia $\omega_{c}$ fue removida al cambiar al esquema de interacción, por lo tanto, podemos especular que la dependencia temporal en $\widetilde{\rho}$ es caracterizada por el tiempo de decaimiento de la cavidad, el cual, es normalmente del orden $10^{-8}$.
+
+Para estimar el tiempo de correlación $\tau$, asumamos que toda la dependencia en la frecuencia está dada por $\bar{n}(\omega,T)$. Extendiendo las integrales de las funciones de correlación al rango $(-\infty,\infty)$, tenemos ahora una transformada de Fourier, y por tanto, el tiempo de correlación vendría dado por $\hbar/k_{B}T$ (\ref{nbar}); el cual, a temperatura ambiente, es del orden de $0.25\times10^{-13}s$ Debido a la diferencia en los ordenes de tiempo en los que el reservorio es afectado y el tiempo en el que evoluciona el sistema, podemos asumir que el cambio $\widetilde{\rho}(t-\tau)= \widetilde{\rho}(t)$ es coherente con la física que estamos analizando, por tanto
+
+\begin{equation}
+ \dot{\widetilde{\rho}}=\alpha(a\widetilde{\rho}a^{\dag}-a^{\dag}a\widetilde{\rho})+\beta(a\widetilde{\rho}a^{\dag}+a^{\dag}\widetilde{\rho}a-a^{\dag}a\widetilde{\rho}-\widetilde{\rho}aa^{\dag})+ h.c.
+\end{equation}
+
+con 
+
+\begin{equation}
+\alpha=\int_{0}^{t}d\tau\int_{0}^{\infty}d\omega e^{-i(\omega-\omega_{c})\tau}g(\omega)|\kappa(\omega)|^2
+\end{equation}
+
+\begin{equation}
+\beta=\int_{0}^{t}d\tau\int_{0}^{\infty}d\omega e^{-i(\omega-\omega_{c})\tau}g(\omega)|\kappa(\omega)|^2\bar{n}(\omega,T)
+\end{equation}
+
+Ya que, $t$ es de la escala de tiempo para la cual $\widetilde{\rho}$ evoluciona y la integración en $\tau$ es dominada por los tiempos característicos del decaimiento de las funciones de correlación, podemos evaluar $\alpha$ y $\beta$ usando
+
+\begin{equation}
+\lim_{t \to \infty} \int_{0}^{t} d\tau e^{-i(\omega-\omega_c)\tau}=\pi\delta(\omega-\omega_c)+i\frac{P}{\omega-\omega_c}
+\end{equation}
+
+
+donde $P$ indica el valor principa de Cauchy, por lo tanto
+
+\begin{equation}
+\alpha=\pi g(\omega_c)|\kappa(\omega_c)|^2 + i\Delta
+\end{equation}
+
+\begin{equation}
+\beta=\pi g(\omega_c)|\kappa(\omega_c)|^{2}\bar{n}(\omega_{c}) + i\Delta^{\prime}
+\end{equation}
+
+
+con
+
+
+
+
+
+
+\begin{equation}
+\alpha=P \int_{0}^{\infty} d\omega\frac{g(\omega)|\kappa(\omega)|^2}{\omega-\omega_c}
+\end{equation}
+
+
+\begin{equation}
+\beta=P \int_{0}^{\infty} d\omega\frac{g(\omega)|\kappa(\omega)|^2}{\omega-\omega_c}\bar{n}(\omega,T)
+\end{equation}
+
+
+
+Renombrando
+
+\begin{equation}
+\gamma=\pi g(\omega_c)|\kappa(\omega_c)|^{2}, \hspace{20mm} \bar{n}=\bar{n}(\omega_c,T) \nonumber
+\end{equation}
+
+obtenemos la ecuación maestra para $\widetilde{\rho}$
+
+\begin{eqnarray}
+\dot{\widetilde{\rho}}=&-&i\Delta[a^{\dag}a,\widetilde{\rho}]+\gamma(2a\widetilde{\rho}a^{\dag}-a^{\dag}a\widetilde{\rho}-\widetilde{\rho}a^{\dag}a)\nonumber \\
+											 &+&2\gamma\bar{n}(a\widetilde{\rho}a^{\dag}+a^{\dag}\widetilde{\rho}a-a^{\dag}a\widetilde{\rho}-\widetilde{\rho}a^{\dag}a)
+\end{eqnarray}
+
+
+sin embargo, tal ecuación, aún está en el esquema de interacción, pasándolo al esquema de Schrödinger
+
+\begin{equation}
+\dot{\rho}=\frac{1}{i\hbar}[H_S,\rho]+e^{(-i/\hbar)H_S t}\dot{\widetilde{\rho}}e^{(i/\hbar)H_S t}
+\end{equation}
+
+con $H_{S}=\hbar\omega_c a^{\dag}a$ llegamos a la \textit{ecuación maestra de una cavidad óptica acoplada a un reservorio de luz térmica}
+
+
+\begin{eqnarray}
+\dot{\rho}=&-&i\omega_{c}^{\prime}[a^{\dag}a,\rho]+\gamma(2a\rho a^{\dag}-a^{\dag}a\rho-\rho a^{\dag}a)\nonumber \\
+											 &+&2\gamma\bar{n}(a\rho a^{\dag}+a^{\dag}\rho a-a^{\dag}a\rho-\rho a^{\dag}a)
+\end{eqnarray}
+
+con $\omega_{c}^{\prime}=\omega_c+\Delta$. No obstante, la manera más reconocible de esta ecuación se encuentra al reacomodar los terminos de tal manera que
+
+\begin{eqnarray}
+\label{masterlindbladform}
+\dot{\rho}=&-&i\omega_{c}^{\prime}[a^{\dag}a,\rho]+\frac{\gamma}{2}(\bar{n}+1)(2a\rho a^{\dag}-a^{\dag}a\rho-\rho a^{\dag}a)\nonumber \\
+											 &+&\frac{\gamma}{2}(\bar{n}+1)(2a^{\dag}\rho a-aa^{\dag}\rho-\rho aa^{\dag})
+\end{eqnarray}
+
+a la cual se le llama forma de Lindblad de la ecuación maestra. Antes de continuar analizando tal forma de nuestra ecuación maestra, veamos si solucionamos el problema planteado al principio del capítulo, sobre las relaciones de conmutación de los operadores $a$ y $a^{\dag}$. 
+
+
+Ya que hemos formulado la ecuación maestra en el esquema de Schrödinger, no obtendremos soluciones de los operadores por si mismos, sino de sus valores esperados $\braket{a}=Tr(a\rho)$, (tomando la traza sobre el sistema $S$)
+
+
+\begin{eqnarray}
+\braket{\dot{a}}=Tr\left\{a\dot{\rho}\right\}=&-&i\omega_c Tr\left\{a[a^{\dag}a,\rho]\right\}+\frac{\gamma}{2}(\bar{n}+1)Tr\left\{a(2a\rho a^{\dag}-a^{\dag}a\rho-\rho a^{\dag}a)\right\} \nonumber \\
+																 &+&\frac{\gamma}{2}\bar{n}Tr\left\{a(2a^{\dag}\rho a-aa^{\dag}\rho-\rho aa^{\dag})\right\} \nonumber
+\end{eqnarray}
+
+por lo tanto
+
+\begin{equation}
+\label{dampingoscilatoramplitud}
+\braket{\dot{a}}=-(\frac{\gamma}{2}+i\omega_c)\braket{a}
+\end{equation}
+
+donde se a utilizado las propiedades cíclicas de la traza $Tr[AB]=Tr[BA]$ y la relación de conmutación $[a,a^{\dag}]=1$. La ecuación (\ref{dampingoscilatoramplitud}) describe el valor esperado de la amplitud del oscilador subamortiguado, note que, como debería ser, oscila con $\omega_{c}$ y decae proporcional a $\gamma$.
+
+
+Otra propiedad importante sería encontrar el comportamiento del número promedio de fotones $\braket{n}=\braket{a^{\dag}a}$ dentro de la cavidad, de manera similar al cálculo anterior
+
+\begin{equation}
+\braket{\dot{n}}=-\gamma(\braket{n}-\bar{n})
+\end{equation}
+
+por tanto, su solución
+
+\begin{equation}
+\braket{n(t)}=\braket{n(0)}e^{-\gamma t}+\bar{n}(1-e^{-\gamma t})
+\end{equation}
+
+Vea que las fluctuaciones térmicas están alimentadas a través del Reservorio, por lo cual, la energía promedio no decae a cero, sino a la energía promedio de un oscilador de frecuencia $\omega_c$ en equilibrio térmico a temperatura $T$.
+
+Por último, deberiamos encontrar la preservación de la relacion de conmutación
+
+\begin{equation}
+\braket{[a,a^{\dag}](t)}=Tr\left\{[a,a^{\dag}]\rho(t)\right\}Tr\left\{\rho(t)\right\}=1
+\end{equation}
+
+
+\section*{Forma de Lindblad}
+
+
+Note que la interpretación física que más sale a relucir (\ref{masterlindbladform}), tiene que ver con las probabilidades de ocupación $p_n=\bra{n}\rho\ket{n}$ para un nivel de energía $n$.
+
+\begin{equation}
+\dot{p}_n= \gamma(\bar{n}+1)\left[(n+1)p_{n+1}-np_n\right]+\gamma\bar{n}\left[np_{n-1}+(n+1)p_n\right]
+\end{equation}
+
+El primer término del lado derecho es llamado \textit{Atenuador}, debido a su relación con las transciciones entre los estados $n\rightarrow (n+1)$, denotado muchas veces como; 
+
+\begin{equation}
+\label{atenuador}
+\mathcal{D}[a]\rho=2a\rho a^{\dag}-\left\{a^{\dag}a,\rho\right\}
+\end{equation}
+
+
+de igual manera, la segundo término se le llama \textit{Amplificador} debido a su relación con las transciciones entre los estados $(n-1)\rightarrow n$. 
+
+\begin{equation}
+\label{amplificador}
+\mathcal{D}[a^{\dag}]\rho=2a^{\dag}\rho a-\left\{aa^{\dag},\rho\right\}
+\end{equation}
+
+
+El rol de tales términos es mucho más evidente en el tratamiento de un átomo de dos niveles (RefCarmichael). Debido a las nuevas formas que hemos adoptado para describir los términos de la ecuación maestra, (\ref{masterlindbladform}) la denotaremos como
+
+
+\begin{equation}
+\dot{\rho}=-i\omega_{c}^{\prime}[a^{\dag}a,\rho]+\frac{\gamma}{2}(\bar{n}+1)\mathcal{D}[a]\rho+\frac{\gamma}{2}\bar{n}\mathcal{D}[a^{\dag}]\rho
+\end{equation} 
+
+o generando un Superoperador de la misma manera que (\ref{atenuador}) y (\ref{amplificador})
+
+\begin{equation}
+\dot{\rho}=\mathcal{L}\rho
+\end{equation}
+
+
+a $\mathcal{L}$ se le conoce como operador de Lindblad. Para comprender la manera en la que tal objeto matemático interactua con nuestro estado, recordemos como evoluciona un sistema cerrado
+
+\begin{equation}
+\label{vonneumann}
+\frac{\partial\rho}{\partial t}=\frac{1}{i\hbar}\left(H\rho-\rho H\right)
+\end{equation}
+
+en una representación privilegiada, la ecuación de von Neumann (\ref{vonneumann})
+
+
+\begin{equation}
+\frac{\partial\rho_{mn}}{\partial t}=\frac{1}{i\hbar}\sum_{l}\left(H_{ml}\rho_{ln}-\rho_{ml} H_{ln}\right)
+\end{equation}
+
+Resolvamos tal ecuación pensando en operadores, tal que dado un operador arbitrario $A$
+
+\begin{equation}
+C=HA-AH
+\end{equation}
+
+esta operación puede ser denotada como $L$ (note la distinción con $\mathcal{L}$) llamado operador de Liouville. 
+
+\begin{equation}
+C=L A
+\end{equation}
+
+
+En la representación que hemos elegido, esto se convierte
+
+\begin{equation}
+C_{mn}=\sum_{m^{\prime}}\sum_{n^{\prime}}L_{mnm^{\prime}n^{\prime}}A_{m^{\prime}n^{\prime}}
+\end{equation}
+
+donde a $L_{mnm^{\prime}n^{\prime}}$ se le llama tétrada. Las tétradas se comportan muy similar a las matrices. Su álgebra puede ser reducida siguiendo el siguiente truco. Al representar un operador como una matriz, debemos tomar un par de subíndices arbitrarios $(m,n)$, en lugar de ello, denótelo como un sólo e integro subíndice $(\alpha)$, de tal manera que 
+
+\begin{equation}
+C_{(\alpha)}=\sum_{(\beta)}L_{(\alpha)(\beta)}A_{(\beta)}
+\end{equation}
+
+
+Esto significa que el álgebra de tétradas es isomórfica al álgebra de matrices.
+
+
+
+
+\end{document}
