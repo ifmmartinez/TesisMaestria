@@ -70,22 +70,503 @@ Todo este trabajo ha sido posible gracias a ellos.}
 \addcontentsline{toc}{chapter}{Agradecimientos} %para que aparezca en el índice
 \markboth{AGRADECIMIENTOS}{AGRADECIMIENTOS} %Encabezado 
 
-Agradecimientos
+Un agradecimiento inmenso a los profesores, los cuales, con su labor hacía nuestro país, lograron guiarme dentro del hermoso mundo de la física, la naturaleza. Una mención especial al Dr. Pablo Barberis Blostein, mi tutor principal del presente trabajo, por su confianza y paciencia.
 
-
+De igual manera, extiendo un agradecimiento por el apoyo financiero del proyecto PAPIIT-DGAPA No. IN103714
 
 
 \chapter*{Resumen} %si no queremos que diga la palabra "capítulo"
 \addcontentsline{toc}{chapter}{Resumen} %para que aparezca en el índice
 \markboth{RESUMEN}{RESUMEN} %Encabezado 
 
-Abstract
+El trabajo actual comprende tópicos introductorios de sistemas cuánticos abiertos, óptica cuántica y optomecánica cuántica, los cuales se desarrollaron de la siguiente manera. El capítulo 1 comprende temas sobre cuantización del campo electromagnético y las bases usuales en las cuales se describe tal campo. El capítulo 2 desarrolla temas sobre disipación de energía en un sistema cuántico, efocándose en dos sistemas privilegiados, el oscilador armónico debido a su importancia en la descripción de la luz, y en el sistema de dos niveles. El capítulo 3 contiene dos técnicas importantes, las cuales, son de gran importancia para la descripción optomecánica de la cavidad que analizaremos más delante: la base de decaimiento y la técnica de proyecciones de Nakajima-Zwanzig. Por último, en el capítulo 4 se plantea el problema de la descripción analítica del campo en una cavidad optomécanica modulada bajo ciertas aproximaciones descritas más delante.
 
 
 \tableofcontents % indice de contenidos
 
-\chapter{Cuantización del Campo Electromagnético}
+
+
+
+\chapter{Teoría Cuántica sobre la luz}
 \pagenumbering{arabic} % para empezar la numeración con números
+\section{Introducción}
+
+Para poder entender ciertas propiedades de la luz fuera de la rama de la mecánica clásica, se analizará la forma canónica de cuantización a partir de las ecuaciones de Maxwell, con la finalidad de lograr decribir la luz en diferentes bases, tales como, la base de Fock y  la base coherente, haciendo relucir sus caractéristicas. Con esto, lograremos obtener las bases en las cuales se describirán los problemas que plantearemos más delante en la tesis. 
+
+\section{Cuantización del Campo Electromagnético}
+
+Con el objetivo de cuantizar el campo electromagnético libre, debemos comenzar a partir de la descripción clásica del campo, las ecuaciones de Maxwell (en unidades MKS):
+
+\begin{subequations}
+\begin{equation}
+\nabla\times\textbf{H}=\frac{\partial\textbf{D}}{\partial t}
+\end{equation}
+\begin{equation}
+\label{faraday}
+\nabla\times\textbf{E}=-\frac{\partial\textbf{B}}{\partial t}
+\end{equation}
+\begin{equation}
+\nabla\cdot\textbf{B}=0
+\end{equation}
+\begin{equation}
+\nabla\cdot\textbf{D}=0
+\end{equation}
+\end{subequations}
+
+con las ecuaciones constitutivas 
+
+\begin{subequations}
+\begin{equation}
+\textbf{B}=\mu_{0}\textbf{H}
+\end{equation}
+\begin{equation}
+\textbf{D}=\epsilon_{0}\textbf{E}
+\end{equation}
+\end{subequations}
+
+donde $\mu_0$ y $\epsilon_0$ corresponden a la permeabilidad magnética y permitividad eléctrica, respectivamente. De tal modo que si tomamos el rotacional de (\ref{faraday}), y reconociendo los términos con las demás ecuaciones, podemos llegar a la ecuación de onda
+
+
+\begin{equation}
+\nabla^{2}\textbf{A}-\frac{1}{c^2}\frac{\partial^2 \textbf{A}}{\partial t^{2}}
+\end{equation}
+
+note que para el campo libre es invariante de norma, por lo cual, hemos elegido la norma de Coulomb ($\nabla\cdot \textbf{A}=0$), por lo cual,
+
+
+\begin{subequations}
+\begin{equation}
+\textbf{B}=\nabla\times \textbf{A}
+\end{equation}
+\begin{equation}
+\textbf{E}=-\frac{\partial\textbf{A}}{\partial t}
+\end{equation}
+\end{subequations}
+
+
+Separando el vector potencial $\textbf{A}$ en dos términos complejos
+
+
+\begin{equation}
+\textbf{A}(\textbf{r},t)=\textbf{A}^{(+)}(\textbf{r},t)+\textbf{A}^{(-)}(\textbf{r},t)
+\end{equation}
+
+donde $\textbf{A}^{(+)}(\textbf{r},t)$ contiene las amplitudes que varían como $e^{-i\omega t}$ ($\omega>0$), y $\textbf{A}^{(-)}=(\textbf{A}^{(+)})^{*}$. Restrinjamos nuestro estudio a un cierto volumen del espacio, con la finalidad de poder trabajar con un conjunto de variables discretas y no con el continuo. Expandiendo el vector potencial en términos de un conjunto ortogonal de funciones
+
+\begin{equation}
+\textbf{A}^{(+)}(\textbf{r},t)=\sum_{j}c_{j}\textbf{u}_{j}(\textbf{r})e^{-i\omega_{j}t}
+\end{equation}
+
+
+con $c_{k}$ como los coeficientes de Fourier. Las funciones vectorial $\textbf{u}_{j}(\textbf{r})$ satisfacen la ecuación de onda
+
+\begin{equation}
+\left(\nabla^{2}+\frac{\omega_{j}^2}{c^2}\right)\textbf{u}_{j}(\textbf{r})=0
+\end{equation}
+
+y la condición
+
+\begin{equation}
+\label{condiciontransversalidad}
+\nabla\cdot\textbf{u}_{j}(\textbf{r})=0
+\end{equation}
+
+formando un conjunto completo ortonormal
+
+\begin{equation}
+\int_{V}\textbf{u}^{*}_{j}(\textbf{r})\textbf{u}_{j^{\prime}}(\textbf{r})d\textbf{r}=\delta_{jj^{\prime}}
+\end{equation}
+
+
+tales funciones dependen de las condiciones del volucmen que hemos elegido. Las funciones  correspondientes a ondas planas en un volumen cúbico de lado $L$
+
+\begin{equation}
+\textbf{u}_{j}(\textbf{r})=L^{3/2}\hat{e}^{(\lambda)}e^{i\textbf{k}\cdot\textbf{r}}
+\end{equation}
+
+donde $\hat{e}^{(\lambda)}$ corresponde al vector unitario de polarización (\ref{condiciontransversalidad}). El subíndice $k$ subtiende valores discretos y el vector $\textbf{k}$ el vector de onda. Por tanto,
+
+\begin{equation}
+\textbf{A}(\textbf{r},t)=\sum_{j}\left(\frac{\hbar}{2\omega_{j}\epsilon_{0}}\right)^{1/2}\left[a_{j}\textbf{u}_{j}(\textbf{r})e^{-i\omega_{j}t}+a^{\dag}_{j}\textbf{u}^{*}_{j}(\textbf{r})e^{i\omega_{j}t}\right]
+\end{equation}
+
+y por tanto, 
+
+\begin{equation}
+\label{campoelectrico}
+\textbf{E}(\textbf{r},t)=i\sum_{j}\left(\frac{\hbar\omega_{j}}{2\epsilon_{0}}\right)^{1/2}\left[a_{j}\textbf{u}_{j}(\textbf{r})e^{-i\omega_{j}t}-a^{\dag}_{j}\textbf{u}^{*}_{j}(\textbf{r})e^{i\omega_{j}t}\right]
+\end{equation}
+
+\begin{equation}
+\label{campomagnetico}
+\textbf{H}(\textbf{r},t)=-i\sum_{j}\left(\frac{\hbar\omega_{j}}{2\mu_{0}}\right)^{1/2}\left(\hat{e}\times\textbf{k}\right)\left[a_{j}\textbf{u}_{j}(\textbf{r})e^{-i\omega_{j}t}-a^{\dag}_{j}\textbf{u}^{*}_{j}(\textbf{r})e^{i\omega_{j}t}\right]
+\end{equation}
+
+Los factores de normalización has sido escogidos de tal manera que  que las amplitudes $a_j$ y $a_{j}^{\dag}$ permanezcan sin dimensiones. La energía total del campo
+
+
+\begin{equation}
+H=\frac{1}{2}\int\left(\epsilon_0 \textbf{E}+\mu_0 \textbf{B}\right) d\textbf{r}
+\end{equation}
+
+Sustituyendo (\ref{campoelectrico}) y (\ref{campomagnetico}) obtenemos
+
+
+\begin{equation}
+H=\sum_{j}\hbar\omega_{j}(\hat{a}_{j}^{\dag}\hat{a}_{j}+1/2),
+\end{equation}
+
+
+la cual, representa la suma del número de fotones en cada modo de vibración multiplicado por la energía de un fotón en cada modo, añadido a esto, un término constante debido a la energía del vació de cada modo. Por lo antes descrito, la cuantización dicta promover $a_{j}^{\dag}\rightarrow \hat{a}^{\dag}$ y $a_{j}\rightarrow \hat{a}_{j}$, los cuales, corresponden a operadores de creación y aniquilación de cada modo, respectivamente; siguiendo
+
+\begin{equation}
+[\hat{a}_{j},\hat{a}_{k}^{\dag}]=\delta_{jk}\nonumber
+\end{equation}
+\begin{equation}
+[\hat{a}_{j},\hat{a}_{k}^{\dag}]=0\nonumber
+\end{equation}
+\begin{equation}
+[\hat{a}_{j}^{\dag},\hat{a}_{k}^{\dag}]=0\nonumber
+\end{equation}
+
+Note la similitud total con $j$ osciladores cuánticos.
+
+\section{Representaciones del Campo Electromagnético}
+
+\subsection{Estados de Número o de Fock}
+
+Considere  el Hamiltoniano correspondiente al campo libre con un modo de oscilación; con frecuencia $\omega$, operador de creación $a$ y operadores de aniquilación $a^{\dag}$
+
+\begin{equation}
+H=\hbar \omega \left(a^{\dag}a+1/2\right)
+\end{equation}
+
+note que se puede diseñar un estado de número $\ket{n}$, el cual, debe su nombre a la conmutación que exite entre el Hamiltoniano $H$ y el operador $n=a^{\dag}a$, llamado el operador de número. 
+
+\begin{equation}
+H\ket{n}=\hbar \omega \left(a^{\dag}a+1/2\right)\ket{n}=E_{n}\ket{n}
+\end{equation}
+
+despues de usar la relación de conmutación $\left[a,a{\dag}\right]=1$
+
+\begin{equation}
+Ha\ket{n}=\left(E_{n}-\hbar\omega\right)a\ket{n}
+\end{equation}
+
+Esto significa que el estado
+
+\begin{equation}
+\label{nmenos1}
+\ket{n-1}=\frac{a}{\alpha_{n}}\ket{n}
+\end{equation}
+
+es también un eigenestado en la energía, pero con eigenvalor
+
+\begin{equation}
+E_{n-1}=E_{n}-\hbar\omega
+\end{equation}
+
+note que en la ecuación (\ref{nmenos1}), $\alpha_{n}$ es una constante determinada por la normalización
+
+\begin{equation}
+\braket{n-1|n-1}=1
+\end{equation}
+
+repitiendo el mismo proceso $n$ veces, es decir, moviéndonos hacia abajo $\hbar\omega$ en niveles de energía hasta obtener
+
+\begin{equation}
+Ha\ket{0}=\left(E_{0}-\hbar\omega\right)a\ket{0}
+\end{equation}
+
+
+donde $E_{0}$ es la energía del estado base del oscilador, de tal manera, que no podemos permitir energías menores a la del vacío $\ket{0}$ y por tanto
+
+\begin{equation}
+a\ket{0}=0
+\end{equation}
+
+entonces, encontramos que tal energía es
+
+\begin{equation}
+H\ket{0}=E_{0}\ket{0}=\frac{1}{2}\hbar\omega\ket{0}
+\end{equation}
+
+y las demás energías, vendrían dadas por
+
+\begin{equation}
+\label{energylevels}
+E_{n}=\left(n+\frac{1}{2}\right)\hbar\omega
+\end{equation}
+
+
+con la definición
+
+\begin{equation}
+a^{\dag}a\ket{n}=n\ket{n}
+\end{equation}
+
+La constante de normalización mencionada anteriormente $\alpha_{n}$ puede ser obtenida
+
+\begin{equation}
+\braket{n-1|n-1}=\frac{1}{|\alpha_{n}|^{2}}\bra{n}a^{\dag}a\ket{n}=\frac{n}{|\alpha_{n}|^{2}}\bra{n}\ket{n}\frac{n}{|\alpha_{n}|^{2}}=1
+\end{equation}
+
+y por tanto, en caso de no tener fase, podemos concluir que
+
+\begin{equation}
+a\ket{n}=\sqrt{n}\ket{n-1}
+\end{equation}
+
+
+y de igual manera para el operador de creación $a^{\dag}$
+
+\begin{equation}
+a^{\dag}\ket{n}=\sqrt{n+1}\ket{n+1}
+\end{equation}
+
+concluyendo que se puede crear cualquier estado de ocupación a partir del estado de vacío, a través de la siguiente operación
+
+
+\begin{equation}
+\ket{n}=\frac{(a^{\dag})^n}{\sqrt{n!}}\ket{0}
+\end{equation}
+
+Los niveles de energía (\ref{energylevels}) se interpretan como la correspondiente presencia de $n$ cúmulos o cuantos de energía $\hbar\omega$, llamados fotones. Los estados $\ket{n}$ son llamados estados de Fock o estados de número, y forman una base completa
+
+
+\begin{equation}
+\sum_{n=0}^{\infty}\ket{n}\bra{n}=1
+\end{equation}
+
+
+Note que los estados de energía son ahora discretos, de manera diferente a como se manifiestan en la teoría clásica donde la energía podía portar cualquier valor. Una importante propiedad del estado de número reluce al calcular las fluctuaciones del campo
+
+\begin{equation}
+\textbf{E}(\textbf{r},t)=E a e^{i(-\omega t+\textbf{k}\cdot\textbf{r})}
+\end{equation}
+
+\begin{equation}
+\bra{n}\textbf{E}\ket{n}=0
+\end{equation}
+
+\begin{equation}
+\bra{n}\textbf{E}^2\ket{n}=2|E|^{2}\left(n+\frac{1}{2}\right)
+\end{equation}
+
+por tanto, hay fluctuaciones del campo inclusive en el estado del vacío. Estas fluctuaciones del vacío son responsables de muchos fenómenos físicos interesantes dentro de la óptica cuántica.
+
+Un tratado similar es hecho si consideramos un Hamiltoniano multimodal $H=\sum_{k}H_{k}$, es decir, un Hamiltoniano en el que tomemos en cuenta diferentes frecuencias y por tanto diferentes estados de ocupación $\ket{n_{k_1},n_{k_2},...,n_{k_l},...,}$ que tomarían en cuenta el número de fotones en cada modo.
+
+
+\subsection{Estados Coherentes}
+
+Los estados coherentes tienen un número indefinido de fotones, lo cual les permite tener una fase más precisamente definida que los estados de número donde la fase es completamente aleatoria. Como veremos, el producto de la incertidumbre en amplitud y fase para un estado coherente es la mínima permitida por el principio de incertidumbre; de tal manera que son los estados mecanocuánticos que más se acercan a la descripción clásica.
+
+Un estado coherente está definido como uno, el cual, es eigenestado del operador de aniquilación, es decir
+
+\begin{equation}
+a\ket{\alpha}=\alpha\ket{\alpha}
+\end{equation}
+
+ y debido a que el operador $a$ no es Hermítico, $\alpha$ es un número complejo; expandiendo en estados de Fock
+
+\begin{equation}
+\ket{\alpha}=\sum_{n=0}^{\infty}c_n\ket{n}
+\end{equation}
+
+y fácilmente
+
+\begin{equation}
+a\ket{\alpha}=\sum_{n=1}^{\infty}c_n\sqrt{n}\ket{n-1}
+\end{equation}
+
+por otro lado
+
+\begin{equation}
+a\ket{\alpha}=\alpha\sum_{n=0}^{\infty}c_n\ket{n}
+\end{equation}
+
+con lo cual podemos obtener la relación de recurrencia
+
+\begin{equation}
+c_{n}=\frac{\alpha}{\sqrt{n}}c_{n-1}
+\end{equation}
+
+poniendo todo en términos de un coeficiente de normalización, obtenemos
+
+\begin{equation}
+c_{n}=\frac{\alpha^n}{\sqrt{n!}}c_{0}
+\end{equation}
+
+
+imponiendo la condición de normalización $\braket{\alpha|\alpha}=1$
+
+\begin{equation}
+\braket{\alpha|\alpha}=|c_{0}|^2 \sum_{n}\frac{\alpha^{2n}}{n!}=|c_{0}|^2 e^{|\alpha|^2}
+\end{equation}
+
+y por lo tanto, la descripción de un estado coherente en términos de una base de Fock
+
+\begin{equation}
+\label{coherente}
+\ket{\alpha}=e^{\frac{-|\alpha|^2}{2}}\sum_{n}\frac{\alpha^n}{\sqrt{n!}}\ket{n}
+\end{equation}
+
+Sí definimos la probabilidad de encontrar $n$ fotones en un estado coherente $P_n=|\braket{n|\alpha}|^2$
+
+\begin{equation}
+P_n=e^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!}
+\end{equation}
+
+lo cual, representa a una distribución Poissoniana. Veamos las propiedades más importantes de los estados coherentes. Escribamos los operadores de creación y aniquilación en sus relaciones con $x$, $p$
+
+\begin{equation}
+a=\frac{1}{\sqrt{2\hbar\omega}}(\omega x +i p)
+\end{equation}
+
+\begin{equation}
+a^{\dag}=\frac{1}{\sqrt{2\hbar\omega}}(\omega x -i p)
+\end{equation}
+
+invirtiendo las relaciones, los valores de expectación de x, p en estados coherentes
+
+\begin{eqnarray}
+\braket{x}_{\alpha}&=&\sqrt{\frac{\hbar}{2\omega}}\bra{\alpha}(a+a^{\dag})\ket{\alpha}\nonumber \\
+									 &=&\sqrt{\frac{\hbar}{2\omega}}(\alpha+\alpha^{*}) \nonumber \\
+									 &=&\sqrt{\frac{2\hbar}{\omega}} \operatorname{Re}(\alpha)
+\end{eqnarray}
+
+y
+
+\begin{eqnarray}
+\braket{x}_{\alpha}&=&-i\sqrt{2\hbar\omega}\bra{\alpha}(a-a^{\dag})\ket{\alpha}\nonumber \\
+									 &=&-i\sqrt{2\hbar\omega}(\alpha-\alpha^{*}) \nonumber \\
+									 &=&2\sqrt{2\hbar\omega}\operatorname{Im}(\alpha)
+\end{eqnarray}
+
+y por tanto, una interpretación al número $\alpha$, el cual considerabamos arbitrario
+
+
+\begin{equation}
+\alpha=\frac{1}{\sqrt{2}}\left(\sqrt{\frac{\omega}{\hbar}}\braket{x}+i\frac{1}{2\sqrt{\hbar\omega}}\braket{p}\right)
+\end{equation}
+
+
+si obtenemos de la misma manera $\braket{x^2}$ y  $\braket{p^2}$ podemos encontrar
+
+
+\begin{equation}
+\Delta x=\sqrt{\braket{x^2}_{\alpha}-\braket{x}_{\alpha}^{2}}=\sqrt{\frac{\hbar}{2\omega}}
+\end{equation}
+
+\begin{equation}
+\Delta p=\sqrt{\braket{p^2}_{\alpha}-\braket{p}_{\alpha}^{2}}=\sqrt{\frac{\hbar\omega}{2}}
+\end{equation}
+
+por último, la relación de incertidumbre
+
+
+\begin{equation}
+\Delta x\Delta p=\frac{\hbar}{2}
+\end{equation}
+
+Note que las mínima relación de incertidumbre permitida por el principio de Heisemberg. Debido a esta propiedad y a que la evolución de los valores de expectación $\braket{x}$ y $\braket{p}$ tienen la misma forma que la evolución de un oscilador clásico, a los estados coherentes se les considera el estado "más clásico". También, tienen un significado físico muy importante en el campo generado por un laser altamente estabilizado. Una manera de generar estos estados, es a través del operador desplazamiento
+
+
+\begin{equation}
+D(\alpha)=\exp{(\alpha a^{\dag}-\alpha^{*} a)}
+\end{equation}
+
+haciendo uso de la relación BCH
+
+\begin{equation}
+e^{(A+B)}=e^{A}e^{B}e^{\frac{-1}{2}[A,B]}
+\end{equation}
+
+valida para $\left[A,\left[A,B\right]\right]=\left[B,\left[A,B\right]\right]=0$. Podemos escribir
+
+\begin{equation}
+D(\alpha)=e^{-|\alpha|^2}e^{\alpha a^{\dag}}e^{-\alpha^{*}a}
+\end{equation}
+
+aplicando el operador a un estado de vacío
+
+\begin{eqnarray}
+D(\alpha)\ket{0}&=&e^{-|\alpha|^2}e^{\alpha a^{\dag}}e^{-\alpha^{*}a}\ket{0}\nonumber \\
+								&=&e^{-|\alpha|^2}e^{\alpha a^{\dag}}\ket{0}\nonumber \\
+								&=&e^{-|\alpha|^2}\sum_{n=0}^{\infty}\frac{\alpha^2}{n!}(a^{\dag})^{n}\ket{0}
+\end{eqnarray}
+ 
+y finalmente de la ecuación (\ref{coherente})
+
+\begin{equation}
+D(\alpha)\ket{0}=\ket{\alpha}
+\end{equation}
+
+por lo tanto, un estado coherente es sólo el estado del vacío desplazado por $D(\alpha)$. Una propiedad importante de este nuevo operador
+
+
+\begin{equation}
+D^{\dag}(\alpha)a D(\alpha)=a+\alpha
+\end{equation}
+
+\begin{equation}
+D^{\dag}(\alpha)a^{\dag} D(\alpha)=a^{\dag}+\alpha^{*}
+\end{equation}
+
+
+\subsection{Luz térmica}
+
+Un estado puro implica un perfecto conocimiento del estado de nuestro sistema, si este no es el caso, tenemos un estado mixto, es decir, sólo conocemos el estado del sistema probabilisticamente. En general, escribimos
+
+\begin{equation}
+\rho=\sum_{R}p_{R}\ket{R}\bra{R}
+\end{equation}
+
+
+y el valor de expectación de algún operador
+
+\begin{eqnarray}
+\braket{O}&=&Tr\left\{\rho O\right\}\nonumber \\
+					&=&\sum_{S}\bra{S}\rho O \ket{S}\nonumber \\
+					&=&\sum_{S}\bra{S}\sum_{R}p_{R}\ket{R}\bra{R} O \ket{S}\nonumber \\
+					&=&\sum_{R}p_{R}\bra{R}O\ket{R}
+\end{eqnarray}
+
+
+donde $\ket{S}$ es un  conjunto de estados ortogonales y completo. Una propiedad interesante de $\rho$ es $Tr(\rho)=1$, lo cual implica la conservación de la probabilidad, incluso para estados mezcla. Un ejemplo de estado mezclado es la luz térmica o radiación térmica. Para un sistema en equilibrio térmico a temperatura $T$, la probabilidad $P_{n}$ de un campo monomodal exitado en $n$ fotones, está dado por el factor de Boltzmann
+
+
+\begin{equation}
+P_{n}=\frac{\exp{(\frac{-E_{n}}{k_{B}T})}}{\sum_{n}\frac{-E_{n}}{k_{B}T}}
+\end{equation}
+
+o lo que es lo mismo
+
+\begin{equation}
+P_{n}=\left[1-\exp{(-\frac{\hbar\omega}{k_{B}T})}\right]\exp{(-\frac{n\hbar\omega}{k_{B}T})}
+\end{equation}
+
+
+por tanto, el operador densidad de un estado térmico monomodal
+
+
+\begin{eqnarray}
+\rho_{thermal}&=&\sum_{n}P_{n}\ket{n}\bra{n}\nonumber \\
+							&=&\left[1-\exp{(-\frac{\hbar\omega}{k_{B}T})}\right]\sum_{n}\exp{(-\frac{\hbar\omega a^{\dag}a}{k_{B}T})}\ket{n}\bra{n}\nonumber \\
+							&=&\left[1-\exp{(-\frac{\hbar\omega}{k_{B}T})}\right]\exp{(-\frac{\hbar\omega a^{\dag}a}{k_{B}T})}\nonumber \\
+							&=&\sum_{n}\frac{\braket{n}_{th}^{n}}{(1+\braket{n}_{th})^{n+1}}\ket{\left\{n_{k}\right\}}\bra{\left\{n_{k}\right\}}
+\end{eqnarray}
+
+Una extensión obvia es el caso multimodal
+
+\begin{equation}
+\rho_{thermal}=\sum_{\left\{n_{k}\right\}}\prod_{k}\frac{\braket{n_k}_{th}^{n_k}}{(1+\braket{n_k}_{th})^{n_{k}+1}}\ket{\left\{n_{k}\right\}}\bra{\left\{n_{k}\right\}}
+\end{equation}
+
+\section{Conclusiones}
+
+Introdujimos la escencia del fotón y por lanto, la escencia de las probabilidades de ocupación de un sistema, asi como, la descripción más correcta de un laser estable; lo cual nos servirá más delante para comprender las cavidades electromagnéticas y los haces que las estimulan; asi como las bases que usaremos frecuentemente para describir los problemas que atacaremos en la tesis. 
 
 
 \chapter{Sistemas Cuánticos Abiertos}
@@ -1283,6 +1764,10 @@ Concentrémonos en obtener una ecuación cerrada para $\mathcal{D}\chi(t)$, tal co
 
 \section{Conclusiones}
 Se ha descrito un método en el cual el cálculo de la evolución temporal del operador densidad es sumamente explícito y por consiguiente la identificación del estado estacionario del mismo también lo es. De igual manera, bastaría sólo con conocer la condición inicial del operador densidad para obtener los valor de expectación del los observables de interés y por lo tanto, a traves del teorema de la regresión cuántica, las correlaciones de tales observables. También, se describió las técnicas implementadas por Nakajima-Zwanzig con la finalidad de que a través de la base de decaimiento, implementar proyecciones en un sistema a conveniencia.
+
+
+
+
 
 
 \end{document}
